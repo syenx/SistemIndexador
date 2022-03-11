@@ -1,0 +1,95 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title - Portal OncoSales</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/dataTables.bootstrap.css" rel="stylesheet" />
+    <script src="~/Scripts/jquery-1.10.2.js"></script>
+</head>
+<body>
+    <div id="wrapper">
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="@Url.Action("Index","Home")">
+                        <span class="navbar-brand">
+                            <img src="~/Content/img/Logo_JSL.png" alt=""  width="300px"  />
+                        </span>
+                    </a>
+                </div>
+                <div class="navbar-collapse collapse">
+                    <ul class="nav navbar-nav">
+                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                    </ul>
+
+                    @{
+                        var Usuario = Session["USUARIO"];
+                        string usuarioNome = ((SistemaIndexador.Domain.Entities.Usuario)Usuario).usuarioNome;
+                        string primeiroNome = usuarioNome.Substring(0, usuarioNome.IndexOf(" "));
+                    }
+
+
+                    @if (((SistemaIndexador.Domain.Entities.Usuario)Usuario).usuarioNome != null)
+                    {
+                        using (Html.BeginForm("Login", "Usuario", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                        {
+                            @Html.AntiForgeryToken()
+
+                            <ul class="nav navbar-nav navbar-right">
+                                <li>
+                                    @Html.ActionLink("Bem Vindo, " + primeiroNome, "Index", "Sistema Indexador", routeValues: null, htmlAttributes: new { title = "Usuario" })
+                                </li>
+                                <li> @Html.ActionLink("Sair", "Logout", "Usuario", routeValues: null, htmlAttributes: new { id = "logoutForm", @class = "navbar-right" })</li>
+                            </ul>
+                        }
+                    }
+                    else
+                    {
+                        <ul class="nav navbar-nav navbar-right">
+                            <li>@Html.ActionLink("Login", "Login", "Usuario", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+                        </ul>
+                    }
+
+                    @*@Html.Partial("_LoginPartial")*@
+                </div>
+            </div>
+        </div>
+        @Html.Partial("_Flash")
+        <div class="container body-content">
+            @RenderBody()
+        </div>
+    </div>
+    @*@Html.Partial("_Footer")*@
+
+
+    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render("~/bundles/bootstrap")
+
+
+    <script src="~/Scripts/jquery.dataTables.js"></script>
+    <script src="~/Scripts/dataTables.bootstrap.js"></script>
+    <script src="~/Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/jquery.cookie.js"></script>
+    <script src="~/Scripts/jquery.flashmessage.js"></script>
+    <script src="~/Scripts/UsuarioScript.js"></script>
+    @RenderSection("scripts", false)
+
+    <script>
+        //$(document).ready(function () {
+        //    $('.tabela').dataTable({
+        //        "language": { "paginate": { "next": "Próximo", "sPrevious": "Anterior", "search": "Pesquisar" }}
+        //    });
+            
+        //});
+    </script>
+</body>
+</html>
