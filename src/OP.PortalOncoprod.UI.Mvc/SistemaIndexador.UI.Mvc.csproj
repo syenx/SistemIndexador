@@ -239,7 +239,6 @@
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
-    <Content Include="Content\img\Logo_JSL.jpg" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\dataTables.bootstrap.css" />
     <Content Include="Content\dataTables.bootstrap.min.css" />
@@ -365,9 +364,11 @@
     <Content Include="Views\CadUsuario\Index.cshtml" />
     <Content Include="Views\CadUsuario\ListaSelecionados.cshtml" />
     <Content Include="Views\CadUsuario\ListaNaoSelecionados.cshtml" />
+    <Content Include="Views\Home\upload.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\img\" />
     <Folder Include="Controllers\Adm\" />
     <Folder Include="Properties\PublishProfiles\" />
     <Folder Include="Views\Base\" />

@@ -1,4 +1,6 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Collections.Generic;
+using System.Web.Mvc;
 
 namespace SistemaIndexador.UI.Mvc.Controllers
 {
@@ -21,6 +23,12 @@ namespace SistemaIndexador.UI.Mvc.Controllers
             ViewBag.Message = "Your contact page.";
 
             return View();
+        }
+
+        public void upload(string data)
+        {
+        
+            ViewBag.Message = "Your contact page.";
         }
     }
 }

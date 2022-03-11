@@ -2,11 +2,8 @@
     ViewBag.Title = "Home Page";
 }
 
-
-
-
-
-<form method="post" id="uploadForm" action="upload" enctype="multipart/form-data">
+@*action="upload"*@
+<form method="post" id="uploadForm" enctype="multipart/form-data">
     <table class="table">
         <tr>
             <td colspan="3">
@@ -19,7 +16,7 @@
                     <input type="file" name="files[]" multiple="multiple" onchange="getFileSizeandName(this);" class="btn btn-secondary" />
 
                 </div>
-             </td>
+            </td>
         </tr>
         <tr>
             <td colspan="3">
@@ -28,28 +25,35 @@
                     <table id="uploadTable" class="table">
                         <thead>
                             <tr>
+
                                 <th scope="col">Nome Arquivo</th>
                                 <th scope="col">Tamanho</th>
+
                             </tr>
                         </thead>
                         <tbody id="tbodyid">
                             <tr id="tr0">
+
                                 <td id="filetd0" height="10px" width="50px"></td>
                                 <td id="filesizetd0" height="10px" width="5px"></td>
                             </tr>
                             <tr id="tr1">
+
                                 <td id="filetd1"></td>
                                 <td id="filesizetd1"></td>
                             </tr>
                             <tr id="tr2">
+
                                 <td id="filetd2"></td>
                                 <td id="filesizetd2"></td>
                             </tr>
                             <tr id="tr3">
+
                                 <td id="filetd3"></td>
                                 <td id="filesizetd3"></td>
                             </tr>
                             <tr id="tr4">
+
                                 <td id="filetd4"></td>
                                 <td id="filesizetd4"></td>
                             </tr>
@@ -66,36 +70,34 @@
         </tr>
         <tr>
             <td colspan="3">
-                <button class="btn btn-primary" type="submit" id="startButton" onClick="CloseAndRefresh();">Start</button>
+                <button class="btn btn-primary" type="submit" id="tbnEnviarArquivos">Indexar</button>
                 <button class="btn" id="cancelButton">Cancel</button>
             </td>
         </tr>
     </table>
 </form>
 
-
-
-
-
-
-
-
-
 <script type="text/javascript">
+
+    var select = $('#uploadTable');
     var totalsizeOfUploadFiles = 0;
+
     function getFileSizeandName(input) {
-        var select = $('#uploadTable');
+        select = $('#uploadTable');
         for (var i = 0; i < input.files.length; i++) {
             var filesizeInBytes = input.files[i].size;
             var filesizeInMB = (filesizeInBytes / (1024 * 1024)).toFixed(2);
             var filename = input.files[i].name;
+
+
             //alert("File name is : "+filename+" || size : "+filesizeInMB+" MB || size : "+filesizeInBytes+" Bytes");
             if (i <= 4) {
                 $('#filetd' + i + '').text(filename);
                 $('#filesizetd' + i + '').text(filesizeInMB);
             }
-            else if (i > 4)
+            else if (i > 4) {
                 select.append($('<tr id=tr' + i + '><td id=filetd' + i + '>' + filename + '</td><td id=filesizetd' + i + '>' + filesizeInMB + '</td></tr>'));
+            }
             totalsizeOfUploadFiles += parseFloat(filesizeInMB);
             $('#totalsize').text(totalsizeOfUploadFiles.toFixed(2) + " MB");
             if (i == 0)
@@ -109,8 +111,42 @@
 
     }
 
-    function CloseAndRefresh() {
-        opener.location.reload(true);
-        self.close();
-    }
+    $(document).ready(function () {
+
+        $("#tbnEnviarArquivos").click(function () {
+            var dataJson = [];
+            $('#uploadTable tr').each(function (index, element) {
+                console.log(index + ' : ' + element.innerText);
+
+                var ArquivosPDF = {
+                    id: index,
+                    nome: element.innerText
+                };
+
+
+                dataJson.push(ArquivosPDF);
+
+            });
+
+            var data = JSON.stringify(dataJson);
+
+            $.ajax({
+                type: 'POST',
+                url: "\\Home\\upload",
+                data: { data: data },
+                dataType: 'JSON',
+                success: function (data) {
+
+                },
+                error: function (data) {
+
+                    alert('Error');
+                }
+            });
+
+
+        });
+    });
+
+
 </script>
