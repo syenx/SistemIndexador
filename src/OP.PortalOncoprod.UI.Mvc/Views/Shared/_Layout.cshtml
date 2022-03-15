@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - Portal OncoSales</title>
+    <title>@ViewBag.Title - Portal JSL</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
@@ -22,7 +22,7 @@
                     </button>
                     <a href="@Url.Action("Index","Home")">
                         <span class="navbar-brand">
-                           @* <img src="~/Content/img/Logo_JSL.png" alt=""  width="300px"  />*@
+                            @* <img src="~/Content/img/Logo_JSL.png" alt=""  width="300px"  />*@
                         </span>
                     </a>
                 </div>
@@ -32,31 +32,40 @@
                     </ul>
 
                     @{
+                        string usuarioNome = "";
+                        string primeiroNome = "";
                         var Usuario = Session["USUARIO"];
-                        string usuarioNome = ((SistemaIndexador.Domain.Entities.Usuario)Usuario).usuarioNome;
-                        string primeiroNome = usuarioNome.Substring(0, usuarioNome.IndexOf(" "));
-                    }
 
-
-                    @if (((SistemaIndexador.Domain.Entities.Usuario)Usuario).usuarioNome != null)
-                    {
-                        using (Html.BeginForm("Login", "Usuario", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                        if (Usuario != null)
                         {
-                            @Html.AntiForgeryToken()
+                            usuarioNome = ((SistemaIndexador.Domain.Entities.Usuario)Usuario).usuarioNome;
+                            primeiroNome = usuarioNome.Substring(0, usuarioNome.IndexOf(" "));
 
-                            <ul class="nav navbar-nav navbar-right">
-                                <li>
-                                    @Html.ActionLink("Bem Vindo, " + primeiroNome, "Index", "Sistema Indexador", routeValues: null, htmlAttributes: new { title = "Usuario" })
-                                </li>
-                                <li> @Html.ActionLink("Sair", "Logout", "Usuario", routeValues: null, htmlAttributes: new { id = "logoutForm", @class = "navbar-right" })</li>
-                            </ul>
+                            using (Html.BeginForm("Login", "Usuario", FormMethod.Post, new { id = "logoutForm", @class = "navbar-right" }))
+                            {
+                                @Html.AntiForgeryToken()
+
+                                <ul class="nav navbar-nav navbar-right">
+                                    <li>
+                                        @Html.ActionLink("Bem Vindo, " + primeiroNome, "Index", "Sistema Indexador", routeValues: null, htmlAttributes: new { title = "Usuario" })
+                                    </li>
+                                    <li> @Html.ActionLink("Sair", "Logout", "Usuario", routeValues: null, htmlAttributes: new { id = "logoutForm", @class = "navbar-right" })</li>
+                                </ul>
+                            }
+
                         }
+                        else
+                        {
+
+                        }
+
+
                     }
                     else
                     {
-                        <ul class="nav navbar-nav navbar-right">
-                            <li>@Html.ActionLink("Login", "Login", "Usuario", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
-                        </ul>
+                    <ul class="nav navbar-nav navbar-right">
+                        <li>@Html.ActionLink("Login", "Login", "Usuario", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
+                    </ul>
                     }
 
                     @*@Html.Partial("_LoginPartial")*@
@@ -84,12 +93,12 @@
     @RenderSection("scripts", false)
 
     <script>
-        //$(document).ready(function () {
-        //    $('.tabela').dataTable({
-        //        "language": { "paginate": { "next": "Próximo", "sPrevious": "Anterior", "search": "Pesquisar" }}
-        //    });
-            
-        //});
+            //$(document).ready(function () {
+            //    $('.tabela').dataTable({
+            //        "language": { "paginate": { "next": "Próximo", "sPrevious": "Anterior", "search": "Pesquisar" }}
+            //    });
+
+            //});
     </script>
 </body>
 </html>
