@@ -5,6 +5,7 @@ using SistemaIndexador.Domain.Entities;
 using SistemaIndexador.Domain.Interfaces.Service;
 using SistemaIndexador.Infra.Data.Interfaces;
 using System;
+using System.Collections.Generic;
 
 namespace SistemaIndexador.Application
 {
@@ -94,6 +95,11 @@ namespace SistemaIndexador.Application
         public TabelaRegrasDMSViewModel ObterPorIdTabela(int id)
         {
             return Mapper.Map<TabelaRegrasDMSViewModel>(_TabelaRegrasDMSService.ObterPorIdTabela(id));
+        }
+
+        public List<TabelaRegrasDMSViewModel> ObterTodos()
+        {
+            return Mapper.Map<List<TabelaRegrasDMSViewModel>>(_TabelaRegrasDMSService.ObterTodos());
         }
     }
 }

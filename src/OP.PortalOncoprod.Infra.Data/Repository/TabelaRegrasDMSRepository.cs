@@ -122,5 +122,36 @@ namespace SistemaIndexador.Infra.Data.Repository
             TabelaRegrasDMS tabelaPrecoOncoprod2 = new TabelaRegrasDMS();
             return tabelaPrecoOncoprod1;
         }
+
+        List<TabelaRegrasDMS> ITabelaPrecoOncoprodRepository.ObterTodos()
+        {
+
+
+            DbConnection connection = this.Db.Database.Connection;
+            #region query
+            string sql = @"SELECT [Id]
+                          ,[Infotipo]
+                          ,[Subinfotipo]
+                          ,[FormularioKitAdmissao]
+                          ,[OutrosDocumentosControlados]
+                          ,[Obrigatorio]
+                          ,[Regra]
+                          ,[DescricaoOutrosDocs]
+                          ,[NomeFunçcao]
+                          ,[TipoMedida]
+                          ,[NomeUsuario]
+                          ,[Data]
+                          ,[CampoDaCtg]
+                          ,[GrupoAutorizacoes]
+                          ,[CodGrupo]
+                      FROM[SistemaIndexador].[dbo].[TabelaRegrasDMS]";
+            #endregion
+            List<TabelaRegrasDMS> tabelaPrecoOncoprods = connection.QueryMultiple(sql).Read<TabelaRegrasDMS>().ToList();
+
+            connection.Close();
+            return tabelaPrecoOncoprods;
+        }
+
+
     }
 }

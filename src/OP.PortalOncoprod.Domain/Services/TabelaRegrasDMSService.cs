@@ -3,6 +3,7 @@ using SistemaIndexador.Domain.Interfaces.Service;
 using SistemaIndexador.Domain.Entities;
 using System;
 using SistemaIndexador.Domain.DTO;
+using System.Collections.Generic;
 
 namespace SistemaIndexador.Domain.Services
 {
@@ -73,6 +74,11 @@ namespace SistemaIndexador.Domain.Services
         public TabelaRegrasDMS ObterPorIdTabela(int id)
         {
             return _TabelaRegrasDMSRepository.ObterPorIdTabela(id);
+        }
+
+        public List<TabelaRegrasDMS> ObterTodos()
+        {
+            return _TabelaRegrasDMSRepository.ObterTodos();
         }
     }
 }

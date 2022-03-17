@@ -1,5 +1,6 @@
 ﻿using SistemaIndexador.Application.ViewModels;
 using System;
+using System.Collections.Generic;
 
 namespace SistemaIndexador.Application.Interfaces
 {
@@ -12,7 +13,8 @@ namespace SistemaIndexador.Application.Interfaces
         TabelaRegrasDMSViewModel ObterPorNomeQuimico(string nomeQuimico);
         TabelaRegrasDMSViewModel ObterPorLaboratorio(string laboratorio);
         PagedViewModel<TabelaRegrasDMSViewModel> ObterTodos(string descricao, int pageSize, int pageNumber);
-        TabelaRegrasDMSViewModel Atualizar(TabelaRegrasDMSViewModel tabelaPrecoOncoprodViewModel);
+        List<TabelaRegrasDMSViewModel> ObterTodos();
+       TabelaRegrasDMSViewModel Atualizar(TabelaRegrasDMSViewModel tabelaPrecoOncoprodViewModel);
         void ExcluirExcel();
         void Remover(int id);
         TabelaRegrasDMSViewModel ObterPorIdTabela(int value);

@@ -6,14 +6,40 @@ using System.Web.Mvc;
 using System.Web.UI.WebControls;
 using Newtonsoft.Json;
 using OP.PortalOncoprod.UI.Mvc.Models;
+using SistemaIndexador.Application;
+using SistemaIndexador.Application.Interfaces;
+using SistemaIndexador.Application.ViewModels;
 
 namespace SistemaIndexador.UI.Mvc.Controllers
 {
     public class HomeController : BaseController
     {
+        ITabelaRegrasDMSAppService _tabelaRegrasDMSAppService;
+
+        public HomeController(ITabelaRegrasDMSAppService TabelaRegrasDMSAppService)
+        {
+            _tabelaRegrasDMSAppService = TabelaRegrasDMSAppService;
+        }
+
         public ActionResult Index()
         {
-            return View();
+
+            DadosIndexacaoViewModel model = new DadosIndexacaoViewModel();
+            model.TipoDoc = new List<string>();
+
+
+            var listarTipos = _tabelaRegrasDMSAppService.ObterTodos();
+
+            foreach (var item in listarTipos)
+            {
+                model.TipoDoc.Add(item.DescricaoOutrosDocs);
+            }
+
+
+
+
+            return View(model);
+
         }
 
         public ActionResult About()
@@ -30,9 +56,14 @@ namespace SistemaIndexador.UI.Mvc.Controllers
             return View();
         }
 
-        public void upload()
+        public void upload(DadosIndexacaoViewModel dadosIndexacaoViewModel)
         {
             string directory = @"C:\Temp\UploadIndexador\old\";
+            //bool exists = Directory.Exists(Server.MapPath(directory));
+
+            //if (!exists)
+            //    Directory.CreateDirectory(Server.MapPath(directory));
+
 
             for (int i = 0; i < Request.Files.Keys.Count; i++)
             {
@@ -42,10 +73,12 @@ namespace SistemaIndexador.UI.Mvc.Controllers
                 {
                     var fileName = Path.GetFileName(file.FileName);
 
+
+
                     file.SaveAs(Path.Combine(directory, fileName));
                 }
             }
-           
+
         }
     }
 }

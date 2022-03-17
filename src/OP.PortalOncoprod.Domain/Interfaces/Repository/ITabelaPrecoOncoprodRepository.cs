@@ -1,5 +1,6 @@
 ﻿using SistemaIndexador.Domain.DTO;
 using SistemaIndexador.Domain.Entities;
+using System.Collections.Generic;
 
 namespace SistemaIndexador.Domain.Interfaces.Repository
 {
@@ -12,6 +13,7 @@ namespace SistemaIndexador.Domain.Interfaces.Repository
         TabelaRegrasDMS ObterPorId(int id);
         void ObterPorCodigo(string Codigo);
         Paged<TabelaRegrasDMS> ObterTodos(string nome, int pageSize, int pageNumber);
+        List<TabelaRegrasDMS> ObterTodos();
         TabelaRegrasDMS ObterPorIdTabela(int id);
     }
 }

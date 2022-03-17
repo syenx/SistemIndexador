@@ -1,6 +1,7 @@
 ﻿using SistemaIndexador.Domain.DTO;
 using SistemaIndexador.Domain.Entities;
 using System;
+using System.Collections.Generic;
 
 namespace SistemaIndexador.Domain.Interfaces.Service
 {
@@ -17,5 +18,6 @@ namespace SistemaIndexador.Domain.Interfaces.Service
         void ExcluirExcel();
         void Remover(int id);
         TabelaRegrasDMS ObterPorIdTabela(int id);
+        List<TabelaRegrasDMS> ObterTodos();
     }
 }
