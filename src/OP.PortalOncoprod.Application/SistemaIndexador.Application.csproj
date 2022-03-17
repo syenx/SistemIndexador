@@ -57,8 +57,8 @@
     <Compile Include="AutoMapper\AutoMapperConfig.cs" />
     <Compile Include="AutoMapper\DomainToViewModelMappingProfile.cs" />
     <Compile Include="AutoMapper\ViewModelToDomainMappingProfile.cs" />
-    <Compile Include="GrupoSistemaTabelaPrecoAppService.cs" />
-    <Compile Include="Interfaces\IGrupoSistemaTabelaPrecoAppService.cs" />
+    <Compile Include="GrupoSistemaTabelaRegrasDMSAppService.cs" />
+    <Compile Include="Interfaces\IGrupoSistemaTabelaRegrasDMSAppService.cs" />
     <Compile Include="Interfaces\ITabelaRegrasDMSAppService.cs" />
     <Compile Include="Interfaces\IUsuarioAppService.cs" />
     <Compile Include="Interfaces\IUsuarioTabelaRegrasDMSAppService.cs" />
@@ -70,7 +70,6 @@
     <Compile Include="TabelaRegrasDMSAppService.cs" />
     <Compile Include="ViewModels\PerfilAcessoViewModel.cs" />
     <Compile Include="ViewModels\TabelaRegrasDMSViewModel.cs" />
-    <Compile Include="ViewModels\TabelaPrecoOncoprodViewModel_v4.cs" />
     <Compile Include="ViewModels\UsuarioTabelaRegrasDMSViewModel.cs" />
     <Compile Include="ViewModels\UsuarioViewModel.cs" />
   </ItemGroup>

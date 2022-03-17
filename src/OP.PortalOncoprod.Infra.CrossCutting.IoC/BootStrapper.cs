@@ -26,7 +26,7 @@ namespace SistemaIndexador.Infra.CrossCutting.IoC
             container.Register<ITabelaRegrasDMSAppService, TabelaRegrasDMSAppService>(Lifestyle.Scoped);
             container.Register<IUsuarioTabelaRegrasDMSAppService, UsuarioTabelaAppService>(Lifestyle.Scoped);
             container.Register<IUsuarioAppService, UsuarioAppService>(Lifestyle.Scoped);
-            container.Register<IGrupoSistemaTabelaPrecoAppService, GrupoSistemaTabelaPrecoAppService>(Lifestyle.Scoped);
+            container.Register<IGrupoSistemaTabelaRegrasDMSAppService, GrupoSistemaTabelaRegrasDMSAppService>(Lifestyle.Scoped);
 
 
 

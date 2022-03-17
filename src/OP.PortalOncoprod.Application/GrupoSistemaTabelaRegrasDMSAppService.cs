@@ -10,11 +10,11 @@ using System.Threading.Tasks;
 
 namespace SistemaIndexador.Application
 {
-    public class GrupoSistemaTabelaPrecoAppService : ApplicationService, IGrupoSistemaTabelaPrecoAppService
+    public class GrupoSistemaTabelaRegrasDMSAppService : ApplicationService, IGrupoSistemaTabelaRegrasDMSAppService
     {
         private readonly IGrupoSistemaTabelaPrecoService _grupoTabelaService;
 
-        public GrupoSistemaTabelaPrecoAppService(IGrupoSistemaTabelaPrecoService grupoTabelaService, IUnitOfWork uow)
+        public GrupoSistemaTabelaRegrasDMSAppService(IGrupoSistemaTabelaPrecoService grupoTabelaService, IUnitOfWork uow)
             : base(uow)
         {
             _grupoTabelaService = grupoTabelaService;
