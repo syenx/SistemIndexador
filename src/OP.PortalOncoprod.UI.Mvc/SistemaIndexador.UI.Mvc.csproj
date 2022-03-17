@@ -352,13 +352,9 @@
     <Content Include="Views\Shared\_ErrorSummary.cshtml" />
     <Content Include="Views\Shared\403.cshtml" />
     <Content Include="Views\Shared\_Footer.cshtml" />
-    <Content Include="Views\TabelaPrecoOncoprod\Create.cshtml" />
-    <Content Include="Views\TabelaPrecoOncoprod\Index.cshtml" />
     <Content Include="Views\Shared\_LoginStart.cshtml" />
     <Content Include="Views\Shared\_LayoutAdmin.cshtml" />
-    <Content Include="Views\TabelaPrecoOncoprod\ImportaExcel.cshtml" />
     <Content Include="Views\Usuario\Login.cshtml" />
-    <Content Include="Views\TabelaPrecoOncoprod\Visualizar.cshtml" />
     <Content Include="Views\Shared\_Flash.cshtml" />
     <Content Include="Views\CadUsuario\Create.cshtml" />
     <Content Include="Views\CadUsuario\Details.cshtml" />

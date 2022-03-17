@@ -30,10 +30,6 @@ namespace OP.PortalOncoprod.UI.Mvc.Controllers
             _TabelaRegrasDMSAppService = TabelaRegrasDMSAppService;
         }
 
-
-
-
-
         [Route("listar")]
         [Authorize]
         public ActionResult Index(string buscar, int pageNumber = 1)
