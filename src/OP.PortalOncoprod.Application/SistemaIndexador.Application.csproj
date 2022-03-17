@@ -57,7 +57,7 @@
     <Compile Include="AutoMapper\AutoMapperConfig.cs" />
     <Compile Include="AutoMapper\DomainToViewModelMappingProfile.cs" />
     <Compile Include="AutoMapper\ViewModelToDomainMappingProfile.cs" />
-    <Compile Include="GrupoSistemaTabelaRegrasDMSAppService.cs" />
+    <Compile Include="GrupoSistemaAppService.cs" />
     <Compile Include="Interfaces\IGrupoSistemaTabelaRegrasDMSAppService.cs" />
     <Compile Include="Interfaces\ITabelaRegrasDMSAppService.cs" />
     <Compile Include="Interfaces\IUsuarioAppService.cs" />

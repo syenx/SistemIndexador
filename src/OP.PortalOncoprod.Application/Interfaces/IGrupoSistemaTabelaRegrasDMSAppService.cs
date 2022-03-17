@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace SistemaIndexador.Application.Interfaces
 {
-    public interface IGrupoSistemaTabelaRegrasDMSAppService : IDisposable
+    public interface IGrupoSistemaAppService : IDisposable
     {
         GrupoSistemaViewModel Adicionar(GrupoSistemaViewModel grupoSistemaTabela);
         GrupoSistemaViewModel ObterPorId(int id);
