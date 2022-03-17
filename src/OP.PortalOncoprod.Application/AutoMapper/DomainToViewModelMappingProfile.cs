@@ -9,10 +9,10 @@ namespace SistemaIndexador.Application.AutoMapper
     {
         protected override void Configure()
         {
-            CreateMap<UsuarioTabelaPreco, UsuarioTabelaPrecoViewModel>();
+            CreateMap<UsuarioTabelaRegrasDMS, UsuarioTabelaRegrasDMSViewModel>();
             CreateMap<GrupoSistemaTabelaPreco, GrupoSistemaTabelaPrecoViewModel>();
-            CreateMap<TabelaPrecoOncoprod, TabelaPrecoOncoprodViewModel>();
-            CreateMap<Paged<TabelaPrecoOncoprod>, PagedViewModel<TabelaPrecoOncoprodViewModel>>();
+            CreateMap<TabelaRegrasDMS, TabelaRegrasDMSViewModel>();
+            CreateMap<Paged<TabelaRegrasDMS>, PagedViewModel<TabelaRegrasDMSViewModel>>();
             CreateMap<Paged<Usuario>, PagedViewModel<UsuarioViewModel>>();
             CreateMap<Usuario, UsuarioViewModel>();
             CreateMap<PerfilAcesso, PerfilAcessoViewModel>();

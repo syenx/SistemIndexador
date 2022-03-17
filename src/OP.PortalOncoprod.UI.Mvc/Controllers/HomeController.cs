@@ -30,14 +30,12 @@ namespace SistemaIndexador.UI.Mvc.Controllers
             return View();
         }
 
-        public void upload(string data)
+        public void upload()
         {
-
             string directory = @"C:\Temp\UploadIndexador\old\";
 
             for (int i = 0; i < Request.Files.Keys.Count; i++)
             {
-
                 HttpPostedFileBase file = Request.Files[i];
 
                 if (file != null && file.ContentLength > 0)
@@ -47,12 +45,7 @@ namespace SistemaIndexador.UI.Mvc.Controllers
                     file.SaveAs(Path.Combine(directory, fileName));
                 }
             }
-
-
-
-
-
-            ViewBag.Message = "Your contact page.";
+           
         }
     }
 }

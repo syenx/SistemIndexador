@@ -7,7 +7,7 @@ namespace SistemaIndexador.Domain.Services
 {
     public class Utility
     {
-        private const string passphrase = "Onco";
+        private const string passphrase = "JSL";
         public static string EncryptPassword(string sPassWd)
         {
 #pragma warning disable CS0618 // Type or member is obsolete

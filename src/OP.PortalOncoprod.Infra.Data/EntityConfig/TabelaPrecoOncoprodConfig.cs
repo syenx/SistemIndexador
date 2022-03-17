@@ -3,7 +3,7 @@ using System.Data.Entity.ModelConfiguration;
 
 namespace SistemaIndexador.Infra.Data.EntityConfig
 {
-    public class TabelaPrecoOncoprodConfig : EntityTypeConfiguration<TabelaPrecoOncoprod>
+    public class TabelaPrecoOncoprodConfig : EntityTypeConfiguration<TabelaRegrasDMS>
     {
         //public TabelaPrecoOncoprodConfig()
         //{

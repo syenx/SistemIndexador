@@ -1,5 +1,5 @@
 ﻿
-<div class="modal show " role="dialog" aria-hidden="true" style="background-color: #ffffff;">
+<div class="modal show " role="dialog" aria-hidden="true" style="background-color: #ffffff; margin:50px 0 0 0 ">
     <div class="card-group">
         <div class="card col-lg-12">
             <div class="modal-dialog " style="width:auto; ">
@@ -131,43 +131,13 @@
     }
 
     $(document).ready(function () {
-
-        //$("#tbnEnviarArquivos").click(function () {
-        //    var dataJson = [];
-        //    $('#uploadTable tr').each(function (index, element) {
-        //        console.log(index + ' : ' + element.innerText);
-
-        //        var ArquivosPDF = {
-        //            id: index,
-        //            nome: element.innerText
-        //        };
-        //        dataJson.push(ArquivosPDF);
-        //    });
-
-        //    var data = JSON.stringify(dataJson);
-        //    $.ajax({
-        //        type: 'POST',
-        //        url: "\\Home\\upload",
-        //        data: { data: data },
-        //        dataType: 'JSON',
-        //        success: function (data) {
-        //        },
-        //        error: function (data) {
-        //        }
-        //    });
-        //});
-
         $('#tbnEnviarArquivos').on('click', function () {
             var data = new FormData();
             var files = $('[type="file"]').get(0).files;
-            // Add the uploaded image content to the form data collection
 
             for (var i = 0; i < files.length; i++) {
-
                 data.append("file", files[i]);
-
             }
-
 
             $.ajax({
                 type: "POST",
@@ -182,21 +152,7 @@
                     alert('Success!')
                 }
             });
-
         })
-
-
-        $('#uploadTable tr').click(function (index, element) {
-            $(this).addClass('selected').siblings().removeClass('selected');
-            var value = $(this).find('td:first').html();
-            alert(value);
-        });
-
-
-        $('.ok').on('click', function (e) {
-            alert($("#table tr.selected td:first").html());
-        });
-
     });
 
 

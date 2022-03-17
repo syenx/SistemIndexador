@@ -25,11 +25,19 @@
                             @* <img src="~/Content/img/Logo_JSL.png" alt=""  width="300px"  />*@
                         </span>
                     </a>
+                    <a href="@Url.Action("listar"," TabelaRegrasDMS")">
+                        <span class="navbar-brand">
+                            @* <img src="~/Content/img/Logo_JSL.png" alt=""  width="300px"  />*@
+                        </span>
+                    </a>
                 </div>
                 <div class="navbar-collapse collapse">
                     <ul class="nav navbar-nav">
                         <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                        <li>@Html.ActionLink("RegrasDMS", "Index", "TabelaRegrasDMS")</li>
+
                     </ul>
+               
 
                     @{
                         string usuarioNome = "";
@@ -47,26 +55,22 @@
 
                                 <ul class="nav navbar-nav navbar-right">
                                     <li>
-                                        @Html.ActionLink("Bem Vindo, " + primeiroNome, "Index", "Sistema Indexador", routeValues: null, htmlAttributes: new { title = "Usuario" })
+                                        @Html.ActionLink("Bem Vindo, " + primeiroNome, "Index", "CadUsuario", routeValues: null, htmlAttributes: new { title = "Usuario" })
                                     </li>
                                     <li> @Html.ActionLink("Sair", "Logout", "Usuario", routeValues: null, htmlAttributes: new { id = "logoutForm", @class = "navbar-right" })</li>
                                 </ul>
                             }
 
                         }
-                        else
-                        {
 
-                        }
 
 
                     }
-                    else
-                    {
+
                     <ul class="nav navbar-nav navbar-right">
                         <li>@Html.ActionLink("Login", "Login", "Usuario", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
                     </ul>
-                    }
+
 
                     @*@Html.Partial("_LoginPartial")*@
                 </div>
@@ -93,12 +97,12 @@
     @RenderSection("scripts", false)
 
     <script>
-            //$(document).ready(function () {
-            //    $('.tabela').dataTable({
-            //        "language": { "paginate": { "next": "Próximo", "sPrevious": "Anterior", "search": "Pesquisar" }}
-            //    });
+                //$(document).ready(function () {
+                //    $('.tabela').dataTable({
+                //        "language": { "paginate": { "next": "Próximo", "sPrevious": "Anterior", "search": "Pesquisar" }}
+                //    });
 
-            //});
+                //});
     </script>
 </body>
 </html>

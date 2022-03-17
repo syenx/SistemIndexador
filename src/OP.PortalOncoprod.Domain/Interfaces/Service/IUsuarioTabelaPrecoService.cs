@@ -11,7 +11,7 @@ namespace SistemaIndexador.Domain.Interfaces.Service
     public interface IUsuarioTabelaPrecoService : IDisposable
     {
 
-        UsuarioTabelaPreco ObterPorUsuarioId(string usuarioId);
+        UsuarioTabelaRegrasDMS ObterPorUsuarioId(string usuarioId);
 
     }
 }

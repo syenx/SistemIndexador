@@ -210,7 +210,7 @@
     <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
-    <Compile Include="Controllers\TabelaPrecoOncoprodController.cs" />
+    <Compile Include="Controllers\TabelaRegrasDMSController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Extensions\FlashMessageExtensions.cs" />
     <Compile Include="Global.asax.cs">
@@ -366,12 +366,15 @@
     <Content Include="Views\CadUsuario\ListaSelecionados.cshtml" />
     <Content Include="Views\CadUsuario\ListaNaoSelecionados.cshtml" />
     <Content Include="Views\Home\upload.cshtml" />
+    <Content Include="Views\TabelaRegrasDMS\Index.cshtml" />
+    <Content Include="Views\TabelaRegrasDMS\Create.cshtml" />
+    <Content Include="Views\TabelaRegrasDMS\Visualizar.cshtml" />
+    <Content Include="Views\TabelaRegrasDMS\ImportaExcel.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\img\" />
     <Folder Include="Controllers\Adm\" />
-    <Folder Include="FilesUpload\" />
     <Folder Include="Properties\PublishProfiles\" />
     <Folder Include="Views\Base\" />
     <Folder Include="Views\Error\" />

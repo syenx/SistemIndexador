@@ -4183,7 +4183,7 @@ textarea.input-group-sm > .input-group-btn > .btn {
 
 .navbar-fixed-top {
   top: 0;
-  z-index: 1030;
+  z-index: 1050;
 }
 
 .navbar-fixed-bottom {
@@ -5617,7 +5617,7 @@ body.modal-open,
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 1040;
+  /*z-index: 1040;*/
   display: none;
   overflow: auto;
   overflow-y: scroll;
@@ -5665,7 +5665,7 @@ body.modal-open,
   right: 0;
   bottom: 0;
   left: 0;
-  z-index: 1030;
+  z-index: 1050;
   background-color: #000000;
 }
 
@@ -5755,7 +5755,7 @@ body.modal-open,
 
 .tooltip {
   position: absolute;
-  z-index: 1030;
+  z-index: 1050;
   display: block;
   font-size: 12px;
   line-height: 1.4;

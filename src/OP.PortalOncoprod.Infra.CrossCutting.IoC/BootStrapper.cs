@@ -23,8 +23,8 @@ namespace SistemaIndexador.Infra.CrossCutting.IoC
 
             // App
             
-            container.Register<ITabelaPrecoOncoprodAppService, TabelaPrecoOncoprodAppService>(Lifestyle.Scoped);
-            container.Register<IUsuarioTabelaPrecoAppService, UsuarioTabelaAppService>(Lifestyle.Scoped);
+            container.Register<ITabelaRegrasDMSAppService, TabelaRegrasDMSAppService>(Lifestyle.Scoped);
+            container.Register<IUsuarioTabelaRegrasDMSAppService, UsuarioTabelaAppService>(Lifestyle.Scoped);
             container.Register<IUsuarioAppService, UsuarioAppService>(Lifestyle.Scoped);
             container.Register<IGrupoSistemaTabelaPrecoAppService, GrupoSistemaTabelaPrecoAppService>(Lifestyle.Scoped);
 
@@ -33,7 +33,7 @@ namespace SistemaIndexador.Infra.CrossCutting.IoC
             // Domain
             container.Register<IUsuarioTabelaPrecoService, UsuarioTabelaPrecoService>(Lifestyle.Scoped);
 
-            container.Register<ITabelaPrecoOncoprodService, TabelaPrecoOncoprodService>(Lifestyle.Scoped);
+            container.Register<ITabelaRegrasDMSService, TabelaRegrasDMSService>(Lifestyle.Scoped);
             container.Register<IUsuarioService, UsuarioService>(Lifestyle.Scoped);
             container.Register<IGrupoSistemaTabelaPrecoService, GrupoSistemaTabelaPrecoService>(Lifestyle.Scoped);
             

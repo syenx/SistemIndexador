@@ -35,7 +35,7 @@ namespace SistemaIndexador.Infra.Data.Repository
                             ([rupoId = @grupoId)";
 
             var multi = cn.QueryMultiple(sql, new { codigo = id });
-            var tabelaPrecoOncoprod = multi.Read<TabelaPrecoOncoprod>();
+            var tabelaPrecoOncoprod = multi.Read<TabelaRegrasDMS>();
             cn.Close();
         }
         

@@ -22,9 +22,9 @@ namespace SistemaIndexador.Domain.Services
             GC.SuppressFinalize(this);
         }
 
-        public UsuarioTabelaPreco ObterPorUsuarioId(string usuarioId)
+        public UsuarioTabelaRegrasDMS ObterPorUsuarioId(string usuarioId)
         {
-            UsuarioTabelaPreco users = new UsuarioTabelaPreco();
+            UsuarioTabelaRegrasDMS users = new UsuarioTabelaRegrasDMS();
             users.listaUsuarioTabela = _usuario.ObterPorUsuarioId(usuarioId);
             return users;
         }

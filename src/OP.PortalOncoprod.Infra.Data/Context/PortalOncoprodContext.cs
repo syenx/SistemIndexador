@@ -12,11 +12,11 @@ namespace SistemaIndexador.Infra.Data.Context
             
         }
 
-        public DbSet<TabelaPrecoOncoprod> TabelaPrecoOncoprods { get; set; }
+        ////public DbSet<TabelaPrecoOncoprod> TabelaPrecoOncoprods { get; set; }
 
         public DbSet<Usuario> Usuarios { get; set; }
 
-        public DbSet<PerfilAcesso> PerfilAcessos { get; set; }
+        //public DbSet<PerfilAcesso> PerfilAcessos { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

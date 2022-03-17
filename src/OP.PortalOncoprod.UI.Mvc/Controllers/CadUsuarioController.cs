@@ -32,42 +32,37 @@ namespace SistemaIndexador.UI.Mvc.Controllers
 
             
 
-            var model = new UsuarioTabelaPrecoViewModel();
+            var model = new UsuarioTabelaRegrasDMSViewModel();
             List<GrupoSistemaTabelaPrecoViewModel> grupos = new List<GrupoSistemaTabelaPrecoViewModel>();
             GrupoSistemaTabelaPrecoViewModel grupo = new GrupoSistemaTabelaPrecoViewModel()
             {
                 grupoId = 0,
-                nomeGrupo = "Oncoprod RS"
+                nomeGrupo = "JSL"
             };
             grupos.Add(grupo);
             grupo = new GrupoSistemaTabelaPrecoViewModel()
             {
                 grupoId = 1,
-                nomeGrupo = "Norprod Fortaleza/CE"
+                nomeGrupo = "Movida"
             };
             grupos.Add(grupo);
             grupo = new GrupoSistemaTabelaPrecoViewModel()
             {
                 grupoId = 2,
-                nomeGrupo = "Hosplog DF"
+                nomeGrupo = "Original"
             };
             grupos.Add(grupo);
             grupo = new GrupoSistemaTabelaPrecoViewModel()
             {
                 grupoId = 3,
-                nomeGrupo = "Oncoprod ES"
+                nomeGrupo = "CS Brasil"
             };
             grupos.Add(grupo);
+
             grupo = new GrupoSistemaTabelaPrecoViewModel()
             {
                 grupoId = 4,
-                nomeGrupo = "TABELA CMED - P.F"
-            };
-            grupos.Add(grupo);
-            grupo = new GrupoSistemaTabelaPrecoViewModel()
-            {
-                grupoId = 6,
-                nomeGrupo = "TABELATABELA CMED - PMC"
+                nomeGrupo = "Grupo Vamos"
             };
             grupos.Add(grupo);
 

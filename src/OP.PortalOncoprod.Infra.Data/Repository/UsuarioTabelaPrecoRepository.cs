@@ -12,7 +12,7 @@ using System.Threading.Tasks;
 
 namespace SistemaIndexador.Infra.Data.Repository
 {
-    public class UsuarioTabelaPrecoRepository : Repository<UsuarioTabelaPreco>, IUsuarioTabelaPrecoRepository
+    public class UsuarioTabelaPrecoRepository : Repository<UsuarioTabelaRegrasDMS>, IUsuarioTabelaPrecoRepository
     {
         public UsuarioTabelaPrecoRepository(PortalOncoprodContext context)
           : base(context)
@@ -21,21 +21,21 @@ namespace SistemaIndexador.Infra.Data.Repository
 
         }
       
-        public List<UsuarioTabelaPreco> ObterPorUsuarioId(string usuarioId)
+        public List<UsuarioTabelaRegrasDMS> ObterPorUsuarioId(string usuarioId)
         {
             var cn = Db.Database.Connection;
             try
             {
                
                 cn.Open();
-                var sql = @"select a.grupoId, usuarioId 
-                    from ksUsuarioTabelaPreco as a 
-                        inner join KsGrupoSistemaTabelaPreco as b on  a.grupoId = b.grupoId
-                    where a.usuarioId like '" + usuarioId + "'";
+                var sql = @" SELECT [usuarioTabelaRegrasDMSId]
+                                  ,[usuarioId]
+                                  ,[grupoId]
+                              FROM [dbo].[UsuarioTabelaRegrasDMS] where usuarioId = '" + usuarioId + "'";
 
                 var multi = cn.QueryMultiple(sql, new { codigo = usuarioId });
                
-                return multi.Read<UsuarioTabelaPreco>().ToList();
+                return multi.Read<UsuarioTabelaRegrasDMS>().ToList();
             }
             catch (Exception)
             {

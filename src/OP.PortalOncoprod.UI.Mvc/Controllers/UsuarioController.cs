@@ -15,9 +15,9 @@ namespace SistemaIndexador.UI.Mvc.Controllers
         private PortalOncoprodContext db = new PortalOncoprodContext();
 
         private readonly IUsuarioAppService _usuarioAppService;
-        private readonly IUsuarioTabelaPrecoAppService _usuarioTabelaPrecoAppService;
+        private readonly IUsuarioTabelaRegrasDMSAppService _usuarioTabelaPrecoAppService;
 
-        public UsuarioController(IUsuarioAppService usuarioAppService, IUsuarioTabelaPrecoAppService usuarioTabelaPrecoAppService)
+        public UsuarioController(IUsuarioAppService usuarioAppService, IUsuarioTabelaRegrasDMSAppService usuarioTabelaPrecoAppService)
         {
             _usuarioAppService = usuarioAppService;
             _usuarioTabelaPrecoAppService = usuarioTabelaPrecoAppService;
@@ -82,7 +82,7 @@ namespace SistemaIndexador.UI.Mvc.Controllers
 
 
 
-                                //Session["LISTA_USUARIO"]  = _usuarioTabelaPrecoAppService.ObterPorUsuarioId(vLogin.usuarioId).listaUsuarioTabela;
+                                Session["LISTA_USUARIO"]  = _usuarioTabelaPrecoAppService.ObterPorUsuarioId(vLogin.usuarioId).listaUsuarioTabela;
                                 
 
 
@@ -90,7 +90,7 @@ namespace SistemaIndexador.UI.Mvc.Controllers
                                 Session["USUARIO"] = vLogin;
 
 
-                                //_grupoSistemaTabService.ObterPorDescricao(vLogin.usuarioId);
+                        //        _grupoSistemaTabService.ObterPorDescricao(vLogin.usuarioId);
 
 
 

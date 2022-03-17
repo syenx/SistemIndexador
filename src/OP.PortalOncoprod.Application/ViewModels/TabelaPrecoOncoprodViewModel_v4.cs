@@ -125,7 +125,7 @@ namespace SistemaIndexador.Application.ViewModels
         public string obs { get; set; }
   
         public string AcessoGerente { get; set; }
-        public List<UsuarioTabelaPrecoViewModel> PaginasAcessos { get; set; }
+        public List<UsuarioTabelaRegrasDMSViewModel> PaginasAcessos { get; set; }
 
     }
 }

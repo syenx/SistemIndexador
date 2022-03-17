@@ -5,8 +5,8 @@ using System.Collections.Generic;
 
 namespace SistemaIndexador.Application.Interfaces
 {
-    public interface IUsuarioTabelaPrecoAppService : IDisposable
+    public interface IUsuarioTabelaRegrasDMSAppService : IDisposable
     {
-        UsuarioTabelaPrecoViewModel ObterPorUsuarioId(string usuarioId);
+        UsuarioTabelaRegrasDMSViewModel ObterPorUsuarioId(string usuarioId);
     }
 }

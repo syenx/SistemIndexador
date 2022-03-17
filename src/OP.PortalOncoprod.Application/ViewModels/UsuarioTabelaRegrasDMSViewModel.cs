@@ -8,14 +8,14 @@ using System.Threading.Tasks;
 
 namespace SistemaIndexador.Application.ViewModels
 {
-    public class UsuarioTabelaPrecoViewModel
+    public class UsuarioTabelaRegrasDMSViewModel
     {
         [Key]
 
         public int Id { get; set; }
 
-        [DisplayName("usuarioTabPrecoId")]
-        public int usuarioTabPrecoId { get; set; }
+        [DisplayName("usuarioTabelaRegrasDMSId")]
+        public int usuarioTabelaRegrasDMSId { get; set; }
 
         [DisplayName("usuarioId")]
         public string usuarioId { get; set; }
@@ -23,7 +23,7 @@ namespace SistemaIndexador.Application.ViewModels
         [DisplayName("grupoId")]
         public string grupoId { get; set; }
 
-        public List<UsuarioTabelaPrecoViewModel> listaUsuarioTabela { get; set; }
+        public List<UsuarioTabelaRegrasDMSViewModel> listaUsuarioTabela { get; set; }
         public List<GrupoSistemaTabelaPrecoViewModel> listaGrupo{ get; set; }
     }
 }

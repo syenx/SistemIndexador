@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 
 namespace SistemaIndexador.Application
 {
-    public class UsuarioTabelaAppService : ApplicationService, IUsuarioTabelaPrecoAppService
+    public class UsuarioTabelaAppService : ApplicationService, IUsuarioTabelaRegrasDMSAppService
     {
 
         private readonly IUsuarioTabelaPrecoService _usuarioService;
@@ -28,9 +28,9 @@ namespace SistemaIndexador.Application
             GC.SuppressFinalize(this);
         }
 
-        public UsuarioTabelaPrecoViewModel ObterPorUsuarioId(string usuarioId)
+        public UsuarioTabelaRegrasDMSViewModel ObterPorUsuarioId(string usuarioId)
         {
-            return Mapper.Map<UsuarioTabelaPrecoViewModel>(_usuarioService.ObterPorUsuarioId(usuarioId));
+            return Mapper.Map<UsuarioTabelaRegrasDMSViewModel>(_usuarioService.ObterPorUsuarioId(usuarioId));
         }
 
     }

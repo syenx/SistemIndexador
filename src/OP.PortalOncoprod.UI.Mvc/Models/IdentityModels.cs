@@ -29,9 +29,9 @@ namespace SistemaIndexador.UI.Mvc.Models
             return new ApplicationDbContext();
         }
 
-        public System.Data.Entity.DbSet<Domain.Entities.TabelaPrecoOncoprod> TabelaPrecoOncoprods { get; set; }
+        public System.Data.Entity.DbSet<Domain.Entities.TabelaRegrasDMS> TabelaPrecoOncoprods { get; set; }
 
-        public System.Data.Entity.DbSet<Application.ViewModels.TabelaPrecoOncoprodViewModel> TabelaPrecoOncoprodViewModels { get; set; }
+        public System.Data.Entity.DbSet<Application.ViewModels.TabelaRegrasDMSViewModel> TabelaPrecoOncoprodViewModels { get; set; }
 
         public System.Data.Entity.DbSet<Domain.Entities.Usuario> Usuarios { get; set; }
 

@@ -59,19 +59,19 @@
     <Compile Include="AutoMapper\ViewModelToDomainMappingProfile.cs" />
     <Compile Include="GrupoSistemaTabelaPrecoAppService.cs" />
     <Compile Include="Interfaces\IGrupoSistemaTabelaPrecoAppService.cs" />
-    <Compile Include="Interfaces\ITabelaPrecoOncoprodAppService.cs" />
+    <Compile Include="Interfaces\ITabelaRegrasDMSAppService.cs" />
     <Compile Include="Interfaces\IUsuarioAppService.cs" />
-    <Compile Include="Interfaces\IUsuarioTabelaPrecoAppService.cs" />
+    <Compile Include="Interfaces\IUsuarioTabelaRegrasDMSAppService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UsuarioAppService.cs" />
     <Compile Include="UsuarioTabelaAppService.cs" />
     <Compile Include="ViewModels\GrupoSistemaTabelaPrecoViewModel.cs" />
     <Compile Include="ViewModels\PagedViewModel.cs" />
-    <Compile Include="TabelaPrecoOncoprodAppService.cs" />
+    <Compile Include="TabelaRegrasDMSAppService.cs" />
     <Compile Include="ViewModels\PerfilAcessoViewModel.cs" />
-    <Compile Include="ViewModels\TabelaPrecoOncoprodViewModel.cs" />
+    <Compile Include="ViewModels\TabelaRegrasDMSViewModel.cs" />
     <Compile Include="ViewModels\TabelaPrecoOncoprodViewModel_v4.cs" />
-    <Compile Include="ViewModels\UsuarioTabelaPrecoViewModel.cs" />
+    <Compile Include="ViewModels\UsuarioTabelaRegrasDMSViewModel.cs" />
     <Compile Include="ViewModels\UsuarioViewModel.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -3,15 +3,15 @@ using SistemaIndexador.Domain.Entities;
 
 namespace SistemaIndexador.Domain.Interfaces.Repository
 {
-    public interface ITabelaPrecoOncoprodRepository : IRepository<TabelaPrecoOncoprod>
+    public interface ITabelaPrecoOncoprodRepository : IRepository<TabelaRegrasDMS>
     {
-        TabelaPrecoOncoprod ObterPorDescricao(string descricao);
-        TabelaPrecoOncoprod ObterPorNomeQuimico(string nomeQuimico);
-        TabelaPrecoOncoprod ObterPorLaboratorio(string laboratorio);
+        TabelaRegrasDMS ObterPorDescricao(string descricao);
+        TabelaRegrasDMS ObterPorGrupoAutorizacao(string nomeQuimico);
+        TabelaRegrasDMS ObterPorCodGrupo(string laboratorio);
         void ExcluirExcel();
-        TabelaPrecoOncoprod ObterPorId(int id);
+        TabelaRegrasDMS ObterPorId(int id);
         void ObterPorCodigo(string Codigo);
-        Paged<TabelaPrecoOncoprod> ObterTodos(string nome, int pageSize, int pageNumber);
-        TabelaPrecoOncoprod ObterPorIdTabela(int id);
+        Paged<TabelaRegrasDMS> ObterTodos(string nome, int pageSize, int pageNumber);
+        TabelaRegrasDMS ObterPorIdTabela(int id);
     }
 }

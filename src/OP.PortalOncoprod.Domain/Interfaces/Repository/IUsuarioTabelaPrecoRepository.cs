@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace SistemaIndexador.Domain.Interfaces.Repository
 {
-    public interface IUsuarioTabelaPrecoRepository : IRepository<UsuarioTabelaPreco>
+    public interface IUsuarioTabelaPrecoRepository : IRepository<UsuarioTabelaRegrasDMS>
     {
-       List<UsuarioTabelaPreco> ObterPorUsuarioId(string usuarioId);
+       List<UsuarioTabelaRegrasDMS> ObterPorUsuarioId(string usuarioId);
 
     }
 }

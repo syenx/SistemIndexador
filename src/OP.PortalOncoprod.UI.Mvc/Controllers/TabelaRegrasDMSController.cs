@@ -3,6 +3,7 @@ using SistemaIndexador.Application.ViewModels;
 using SistemaIndexador.Domain.Entities;
 using SistemaIndexador.Domain.Services;
 using SistemaIndexador.Infra.Data.Context;
+using SistemaIndexador.UI.Mvc.Controllers;
 using SistemaIndexador.UI.Mvc.Extensions;
 using System;
 using System.Collections.Generic;
@@ -15,26 +16,29 @@ using System.Text.RegularExpressions;
 using System.Web;
 using System.Web.Mvc;
 
-namespace SistemaIndexador.UI.Mvc.Controllers
-{
-    [RoutePrefix("TabelaPreco")]
-    [Route("{action=listar}")]
-    public class TabelaPrecoOncoprodController : BaseController
-    {
-        private readonly ITabelaPrecoOncoprodAppService _tabelaPrecoOncoprodAppService;
 
-        public TabelaPrecoOncoprodController(ITabelaPrecoOncoprodAppService tabelaPrecoOncoprodAppService)
+namespace OP.PortalOncoprod.UI.Mvc.Controllers
+{
+    [RoutePrefix("TabelaRegrasDMS")]
+    [Route("{action=listar}")]
+    public class TabelaRegrasDMSController : BaseController
+    {
+        private readonly ITabelaRegrasDMSAppService _TabelaRegrasDMSAppService;
+
+        public TabelaRegrasDMSController(ITabelaRegrasDMSAppService TabelaRegrasDMSAppService)
         {
-            _tabelaPrecoOncoprodAppService = tabelaPrecoOncoprodAppService;
+            _TabelaRegrasDMSAppService = TabelaRegrasDMSAppService;
         }
 
 
-        // GET: TabelaPrecoOncoprod
+
+
+
         [Route("listar")]
         [Authorize]
         public ActionResult Index(string buscar, int pageNumber = 1)
         {
-            var paged = _tabelaPrecoOncoprodAppService.ObterTodos(buscar, PageSize, pageNumber);
+            var paged = _TabelaRegrasDMSAppService.ObterTodos(buscar, PageSize, pageNumber);
             ViewBag.TotalCount = Math.Ceiling((double)paged.Count / PageSize);
             ViewBag.PageNumber = pageNumber;
             ViewBag.SearchData = buscar;
@@ -46,11 +50,11 @@ namespace SistemaIndexador.UI.Mvc.Controllers
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(
-            TabelaPrecoOncoprodViewModel tabelaPrecoOncoprodViewModel)
+            TabelaRegrasDMSViewModel TabelaRegrasDMSViewModel)
         {
             if (!this.ModelState.IsValid)
-                return (ActionResult)this.View((object)tabelaPrecoOncoprodViewModel);
-            tabelaPrecoOncoprodViewModel = this._tabelaPrecoOncoprodAppService.Adicionar(tabelaPrecoOncoprodViewModel);
+                return (ActionResult)this.View((object)TabelaRegrasDMSViewModel);
+            TabelaRegrasDMSViewModel = this._TabelaRegrasDMSAppService.Adicionar(TabelaRegrasDMSViewModel);
             return (ActionResult)this.RedirectToAction("Index");
         }
 
@@ -60,18 +64,18 @@ namespace SistemaIndexador.UI.Mvc.Controllers
         {
             if (id.Equals((object)null))
                 return (ActionResult)new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            TabelaPrecoOncoprodViewModel oncoprodViewModel = this._tabelaPrecoOncoprodAppService.ObterPorIdTabela(id.Value);
+            TabelaRegrasDMSViewModel oncoprodViewModel = this._TabelaRegrasDMSAppService.ObterPorIdTabela(id.Value);
             if (!oncoprodViewModel.Equals((object)null))
             {
                 Usuario usuario = (Usuario)this.Session["USUARIO"];
                 if (usuario != null)
                 {
                     int num = usuario.usuarioId.ToUpper().Equals("RENATAP") ? 1 : (usuario.usuarioId.ToUpper().Equals("THIAGOA") ? 1 : 0);
-                    oncoprodViewModel.AcessoGerente = num == 0 ? "REP" : "GER";
+                    //    oncoprodViewModel.AcessoGerente = num == 0 ? "REP" : "GER";
                 }
                 else
                     this.Response.Redirect("/Usuario/Logout");
-                oncoprodViewModel.PaginasAcessos = (List<UsuarioTabelaPrecoViewModel>)this.Session["LISTA_USUARIO"];
+                oncoprodViewModel.PaginasAcessos = (List<UsuarioTabelaRegrasDMSViewModel>)this.Session["LISTA_USUARIO"];
                 if (oncoprodViewModel == null)
                     return (ActionResult)this.HttpNotFound();
             }
@@ -84,14 +88,14 @@ namespace SistemaIndexador.UI.Mvc.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult ImportaExcel(HttpPostedFileBase postedFile)
         {
-            TabelaPrecoOncoprodViewModel oncoprodViewModel = new TabelaPrecoOncoprodViewModel();
+            TabelaRegrasDMSViewModel oncoprodViewModel = new TabelaRegrasDMSViewModel();
             if (this.ModelState.IsValid)
             {
                 if (postedFile == null)
                     return this.View().Error("Nenhum arquivo foi selecionado!");
                 if (postedFile.FileName.Substring(postedFile.FileName.IndexOf('.')).ToUpper() != ".CSV")
                     return this.View().Error("O formato do arquivo não é suportado, O tipo de arquivo suportado é CSV.");
-                this._tabelaPrecoOncoprodAppService.ExcluirExcel();
+                this._TabelaRegrasDMSAppService.ExcluirExcel();
                 string empty = string.Empty;
                 if (postedFile != null)
                 {
@@ -137,66 +141,38 @@ namespace SistemaIndexador.UI.Mvc.Controllers
             DataSet dataSet = new DataSet("Tabelas");
             bool flag = false;
             DataTable dt1 = new DataTable();
-            dt1.Columns.Add("codigo", typeof(string));
-            dt1.Columns.Add("dataAlteracao", typeof(string));
-            dt1.Columns.Add("margemMinima", typeof(string));
-            dt1.Columns.Add("margemVenda", typeof(string));
-            dt1.Columns.Add("descricao", typeof(string));
-            dt1.Columns.Add("apresentacaoQualidade", typeof(string));
-            dt1.Columns.Add("nomeQuimico", typeof(string));
-            dt1.Columns.Add("laboratorio", typeof(string));
-            dt1.Columns.Add("ean", typeof(string));
-            dt1.Columns.Add("registro", typeof(string));
-            dt1.Columns.Add("ncm", typeof(string));
-            dt1.Columns.Add("lista", typeof(string));
-            dt1.Columns.Add("categoria", typeof(string));
-            dt1.Columns.Add("tipoArmazenamento", typeof(string));
-            dt1.Columns.Add("produtoControlado", typeof(string));
-            dt1.Columns.Add("exclusivoHospitalar", typeof(string));
-            dt1.Columns.Add("classificacaofiscal", typeof(string));
-            dt1.Columns.Add("nacionalImportado", typeof(string));
-            dt1.Columns.Add("ufLaboratorio", typeof(string));
-            dt1.Columns.Add("observacao", typeof(string));
-            dt1.Columns.Add("nivel", typeof(string));
-            dt1.Columns.Add("aumento", typeof(string));
-            dt1.Columns.Add("oncoProdRS_17_SC", typeof(string));
-            dt1.Columns.Add("oncoProdRS_175_RS", typeof(string));
-            dt1.Columns.Add("oncoProdRS_18_PR", typeof(string));
-            dt1.Columns.Add("oncoProdPE_17_AL", typeof(string));
-            dt1.Columns.Add("oncoProdPE_18_BA_CE_MA_PB_PE_PI_RN_SE", typeof(string));
-            dt1.Columns.Add("oncoprodSP_12_SP_MG", typeof(string));
-            dt1.Columns.Add("oncoprodSP_17_AC_AL_GO_MS_MT_PA_RR", typeof(string));
-            dt1.Columns.Add("oncoprodSP_175_RO", typeof(string));
-            dt1.Columns.Add("oncoprodSP_18_AM_AP_BA_CE_MA_MG_PB_PI_RN_SE_TO", typeof(string));
-            dt1.Columns.Add("oncoprodSP_18_SP", typeof(string));
-            dt1.Columns.Add("oncoprodSP_20_RJ", typeof(string));
-            dt1.Columns.Add("oncoprodDF_12_SP_MG", typeof(string));
-            dt1.Columns.Add("oncoprodDF_17_AC_AL_GO_MS_MT_PA_RR", typeof(string));
-            dt1.Columns.Add("oncoprodDF_17_DF", typeof(string));
-            dt1.Columns.Add("oncoprodDF_17_GO", typeof(string));
-            dt1.Columns.Add("oncoprodDF_175_RO", typeof(string));
-            dt1.Columns.Add("oncoprodDF_18_AM_AP_BA_CE_MA_MG_PB_PI_RN_SE_TO_SP", typeof(string));
-            dt1.Columns.Add("oncoprodDF_20_RJ", typeof(string));
-            dt1.Columns.Add("oncoprodES_12_SP_MG", typeof(string));
-            dt1.Columns.Add("oncoprodES_17_ES", typeof(string));
-            dt1.Columns.Add("oncoprodES_18_SP", typeof(string));
-            dt1.Columns.Add("oncoprodES_20_RJ", typeof(string));
-            dt1.Columns.Add("pf_0", typeof(string));
-            dt1.Columns.Add("pf_12", typeof(string));
-            dt1.Columns.Add("pf_17", typeof(string));
-            dt1.Columns.Add("pf_175", typeof(string));
-            dt1.Columns.Add("pf_18", typeof(string));
-            dt1.Columns.Add("pf_20", typeof(string));
-            dt1.Columns.Add("PMC_0", typeof(string));
-            dt1.Columns.Add("PMC_12", typeof(string));
-            dt1.Columns.Add("PMC_17", typeof(string));
-            dt1.Columns.Add("PMC_175", typeof(string));
-            dt1.Columns.Add("PMC_18", typeof(string));
-            dt1.Columns.Add("PMC_20", typeof(string));
-            dt1.Columns.Add("indicacao", typeof(string));
+            
+            dt1.Columns.Add("Infotipo", typeof(string));
+            dt1.Columns.Add("Subinfotipo", typeof(string));
+            dt1.Columns.Add("FormularioKitAdmissao", typeof(string));
+            dt1.Columns.Add("OutrosDocumentosControlados", typeof(string));
+            dt1.Columns.Add("Obrigatorio", typeof(string));
+            dt1.Columns.Add("Regra", typeof(string));
+            dt1.Columns.Add("DescricaoOutrosDocs", typeof(string));
+            dt1.Columns.Add("NomeFunçcao", typeof(string));
+            dt1.Columns.Add("TipoMedida", typeof(string));
+            dt1.Columns.Add("NomeUsuario", typeof(string));
+            dt1.Columns.Add("Data", typeof(string));
+            dt1.Columns.Add("CampoDaCtg", typeof(string));
+            dt1.Columns.Add("GrupoAutorizacoes", typeof(string));
+            dt1.Columns.Add("CodGrupo", typeof(string));
+
             for (int index = 0; index < dt.Rows.Count; ++index)
-                dt1.Rows.Add((object)dt.Rows[index][0].ToString().ToString().PadLeft(5, '0'), (object)dt.Rows[index][1], (object)dt.Rows[index][2].ToString(), (object)dt.Rows[index][3].ToString(), (object)dt.Rows[index][4].ToString(), (object)dt.Rows[index][5].ToString(), (object)dt.Rows[index][6].ToString(), (object)dt.Rows[index][7].ToString(), (object)dt.Rows[index][8].ToString(), (object)dt.Rows[index][9].ToString(), (object)dt.Rows[index][10].ToString(), (object)dt.Rows[index][11].ToString(), (object)dt.Rows[index][12].ToString(), (object)dt.Rows[index][13].ToString(), (object)dt.Rows[index][14].ToString(), (object)dt.Rows[index][15].ToString(), (object)dt.Rows[index][16].ToString(), (object)dt.Rows[index][17].ToString(), (object)dt.Rows[index][18].ToString(), (object)dt.Rows[index][19].ToString(), (object)dt.Rows[index][20].ToString(), (object)dt.Rows[index][21].ToString(), (object)dt.Rows[index][22].ToString(), (object)dt.Rows[index][23].ToString(), (object)dt.Rows[index][24].ToString(), (object)dt.Rows[index][25].ToString(), (object)dt.Rows[index][26].ToString(), (object)dt.Rows[index][27].ToString(), (object)dt.Rows[index][28].ToString(), (object)dt.Rows[index][29].ToString(), (object)dt.Rows[index][30].ToString(), (object)dt.Rows[index][31].ToString(), (object)dt.Rows[index][32].ToString(), (object)dt.Rows[index][33].ToString(), (object)dt.Rows[index][34].ToString(), (object)dt.Rows[index][35].ToString(), (object)dt.Rows[index][36].ToString(), (object)dt.Rows[index][37].ToString(), (object)dt.Rows[index][38].ToString(), (object)dt.Rows[index][39].ToString(), (object)dt.Rows[index][40].ToString(), (object)dt.Rows[index][41].ToString(), (object)dt.Rows[index][42].ToString(), (object)dt.Rows[index][43].ToString(), (object)dt.Rows[index][44].ToString(), (object)dt.Rows[index][45].ToString(), (object)dt.Rows[index][46].ToString(), (object)dt.Rows[index][47].ToString(), (object)dt.Rows[index][48].ToString(), (object)dt.Rows[index][49].ToString(), (object)dt.Rows[index][50].ToString(), (object)dt.Rows[index][51].ToString(), (object)dt.Rows[index][52].ToString(), (object)dt.Rows[index][53].ToString(), (object)dt.Rows[index][54].ToString(), (object)dt.Rows[index][55].ToString(), (object)dt.Rows[index][56].ToString());
-            flag = this.InsertBulkCopy(dt1, "ksTabelaPrecoOncoprod_v5");
+                dt1.Rows.Add((object)dt.Rows[index][0].ToString(), 
+                             (object)dt.Rows[index][1].ToString(), 
+                             (object)dt.Rows[index][2].ToString(), 
+                             (object)dt.Rows[index][3].ToString(), 
+                             (object)dt.Rows[index][4].ToString(), 
+                             (object)dt.Rows[index][5].ToString(), 
+                             (object)dt.Rows[index][6].ToString(), 
+                             (object)dt.Rows[index][7].ToString(), 
+                             (object)dt.Rows[index][8].ToString(), 
+                             (object)dt.Rows[index][9].ToString(), 
+                             (object)dt.Rows[index][10].ToString(), 
+                             (object)dt.Rows[index][11].ToString(), 
+                             (object)dt.Rows[index][12].ToString(), 
+                             (object)dt.Rows[index][13].ToString());
+            flag = this.InsertBulkCopy(dt1, "TabelaRegrasDMS");
             return dataSet;
         }
 
@@ -272,12 +248,6 @@ namespace SistemaIndexador.UI.Mvc.Controllers
             return true;
         }
 
-        protected override void Dispose(bool disposing)
-        {
-            if (disposing)
-                this._tabelaPrecoOncoprodAppService.Dispose();
-            base.Dispose(disposing);
-        }
 
     }
 }

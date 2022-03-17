@@ -29,9 +29,9 @@ namespace SistemaIndexador.Infra.Data.Repository
 
             var cn = Db.Database.Connection;
 
-            var sql = @"SELECT * FROM ksUsuario WITH (NOLOCK)" +
-                      "WHERE (@Login IS NULL OR usuarioLogin = @Login)" +
-                      "AND (@Senha IS NULL OR usuarioSenha = @Senha)";
+            var sql = @"SELECT * FROM Usuario WITH (NOLOCK)" +
+                      "WHERE (@usuarioLogin IS NULL OR usuarioLogin = @Login)" +
+                      "AND (@usuarioSenha IS NULL OR usuarioSenha = @Senha)";
 
             var multi = cn.QueryMultiple(sql, new { Login = login, Senha = senha });
             var usuario = multi.Read();

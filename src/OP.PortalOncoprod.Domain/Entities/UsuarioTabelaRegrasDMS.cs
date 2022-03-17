@@ -4,12 +4,12 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SistemaIndexador.Domain.Entities
 {
-    [Table("ksUsuarioTabelaPreco")]
-    public class UsuarioTabelaPreco
+    [Table("UsuarioTabelaRegrasDMS")]
+    public class UsuarioTabelaRegrasDMS
     {
-        public int usuarioTabPrecoId { get; set; }
+        public int usuarioTabelaRegrasDMSId { get; set; }
         public string usuarioId { get; set; }
         public int grupoId { get; set; }
-        public List<UsuarioTabelaPreco> listaUsuarioTabela { get; set; }
+        public List<UsuarioTabelaRegrasDMS> listaUsuarioTabela { get; set; }
     }
 }

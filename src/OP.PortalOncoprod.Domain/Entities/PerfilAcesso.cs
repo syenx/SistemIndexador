@@ -2,7 +2,7 @@
 
 namespace SistemaIndexador.Domain.Entities
 {
-    [Table("ksPerfilAcesso")]
+    [Table("PerfilAcesso")]
     public class PerfilAcesso
     {
         public string perfilAcessoId { get; set; }
