@@ -20,12 +20,12 @@ namespace SistemaIndexador.Application
             _grupoTabelaService = grupoTabelaService;
         }
 
-        public GrupoSistemaTabelaPrecoViewModel Adicionar(GrupoSistemaTabelaPrecoViewModel grupoSistemaTabela)
+        public GrupoSistemaViewModel Adicionar(GrupoSistemaViewModel grupoSistemaTabela)
         {
             throw new NotImplementedException();
         }
 
-        public GrupoSistemaTabelaPrecoViewModel Atualizar(GrupoSistemaTabelaPrecoViewModel grupoSistemaTabela)
+        public GrupoSistemaViewModel Atualizar(GrupoSistemaViewModel grupoSistemaTabela)
         {
             throw new NotImplementedException();
         }
@@ -41,17 +41,17 @@ namespace SistemaIndexador.Application
             throw new NotImplementedException();
         }
 
-        public GrupoSistemaTabelaPrecoViewModel ObterPorDescricao(string descricao)
+        public GrupoSistemaViewModel ObterPorDescricao(string descricao)
         {
             throw new NotImplementedException();
         }
 
-        public GrupoSistemaTabelaPrecoViewModel ObterPorId(int id)
+        public GrupoSistemaViewModel ObterPorId(int id)
         {
             throw new NotImplementedException();
         }
 
-        public PagedViewModel<GrupoSistemaTabelaPrecoViewModel> ObterTodos(string descricao, int pageSize, int pageNumber)
+        public PagedViewModel<GrupoSistemaViewModel> ObterTodos(string descricao, int pageSize, int pageNumber)
         {
             throw new NotImplementedException();
         }

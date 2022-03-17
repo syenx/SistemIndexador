@@ -9,12 +9,12 @@ namespace SistemaIndexador.Application.Interfaces
 {
     public interface IGrupoSistemaTabelaRegrasDMSAppService : IDisposable
     {
-        GrupoSistemaTabelaPrecoViewModel Adicionar(GrupoSistemaTabelaPrecoViewModel grupoSistemaTabela);
-        GrupoSistemaTabelaPrecoViewModel ObterPorId(int id);
+        GrupoSistemaViewModel Adicionar(GrupoSistemaViewModel grupoSistemaTabela);
+        GrupoSistemaViewModel ObterPorId(int id);
         void ObterPorCodigo(int id);
-        GrupoSistemaTabelaPrecoViewModel ObterPorDescricao(string descricao);
-        PagedViewModel<GrupoSistemaTabelaPrecoViewModel> ObterTodos(string descricao, int pageSize, int pageNumber);
-        GrupoSistemaTabelaPrecoViewModel Atualizar(GrupoSistemaTabelaPrecoViewModel grupoSistemaTabela);
+        GrupoSistemaViewModel ObterPorDescricao(string descricao);
+        PagedViewModel<GrupoSistemaViewModel> ObterTodos(string descricao, int pageSize, int pageNumber);
+        GrupoSistemaViewModel Atualizar(GrupoSistemaViewModel grupoSistemaTabela);
         
         void Remover(int id);
     }

@@ -9,7 +9,7 @@ namespace SistemaIndexador.Application.AutoMapper
         protected override void Configure()
         {
             CreateMap<UsuarioTabelaRegrasDMSViewModel,UsuarioTabelaRegrasDMS>();
-            CreateMap<GrupoSistemaTabelaPrecoViewModel, GrupoSistemaTabelaPreco>();
+            CreateMap<GrupoSistemaViewModel, GrupoSistemaTabelaPreco>();
             CreateMap<TabelaRegrasDMSViewModel, TabelaRegrasDMS>();
             CreateMap<UsuarioViewModel, Usuario>();
             CreateMap<PerfilAcessoViewModel, PerfilAcesso>();

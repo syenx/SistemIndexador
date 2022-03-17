@@ -24,6 +24,6 @@ namespace SistemaIndexador.Application.ViewModels
         public string grupoId { get; set; }
 
         public List<UsuarioTabelaRegrasDMSViewModel> listaUsuarioTabela { get; set; }
-        public List<GrupoSistemaTabelaPrecoViewModel> listaGrupo{ get; set; }
+        public List<GrupoSistemaViewModel> listaGrupo{ get; set; }
     }
 }

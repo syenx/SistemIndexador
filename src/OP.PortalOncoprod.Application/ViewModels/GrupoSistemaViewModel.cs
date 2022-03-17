@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace SistemaIndexador.Application.ViewModels
 {
-    public class GrupoSistemaTabelaPrecoViewModel
+    public class GrupoSistemaViewModel
     {
         [Key]
 

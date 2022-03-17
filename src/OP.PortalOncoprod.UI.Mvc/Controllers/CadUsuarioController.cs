@@ -33,33 +33,33 @@ namespace SistemaIndexador.UI.Mvc.Controllers
             
 
             var model = new UsuarioTabelaRegrasDMSViewModel();
-            List<GrupoSistemaTabelaPrecoViewModel> grupos = new List<GrupoSistemaTabelaPrecoViewModel>();
-            GrupoSistemaTabelaPrecoViewModel grupo = new GrupoSistemaTabelaPrecoViewModel()
+            List<GrupoSistemaViewModel> grupos = new List<GrupoSistemaViewModel>();
+            GrupoSistemaViewModel grupo = new GrupoSistemaViewModel()
             {
                 grupoId = 0,
                 nomeGrupo = "JSL"
             };
             grupos.Add(grupo);
-            grupo = new GrupoSistemaTabelaPrecoViewModel()
+            grupo = new GrupoSistemaViewModel()
             {
                 grupoId = 1,
                 nomeGrupo = "Movida"
             };
             grupos.Add(grupo);
-            grupo = new GrupoSistemaTabelaPrecoViewModel()
+            grupo = new GrupoSistemaViewModel()
             {
                 grupoId = 2,
                 nomeGrupo = "Original"
             };
             grupos.Add(grupo);
-            grupo = new GrupoSistemaTabelaPrecoViewModel()
+            grupo = new GrupoSistemaViewModel()
             {
                 grupoId = 3,
                 nomeGrupo = "CS Brasil"
             };
             grupos.Add(grupo);
 
-            grupo = new GrupoSistemaTabelaPrecoViewModel()
+            grupo = new GrupoSistemaViewModel()
             {
                 grupoId = 4,
                 nomeGrupo = "Grupo Vamos"
