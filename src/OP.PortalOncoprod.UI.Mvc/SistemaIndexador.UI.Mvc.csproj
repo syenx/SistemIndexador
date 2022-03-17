@@ -370,10 +370,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\img\" />
-    <Folder Include="Controllers\Adm\" />
     <Folder Include="Properties\PublishProfiles\" />
-    <Folder Include="Views\Base\" />
-    <Folder Include="Views\Error\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
