@@ -4,12 +4,10 @@ using SistemaIndexador.Infra.CrossCutting.Logging.Model;
 
 namespace SistemaIndexador.Infra.CrossCutting.Logging.Data
 {
-    public class LogginContext : DbContext  
+    public class LogginContext : DbContext
     {
-        public LogginContext()
-            : base("DefaultConnection")
+        public LogginContext() : base("DefaultConnection")
         {
-            
         }
 
         public DbSet<Auditoria> LogAuditoria { get; set; }
