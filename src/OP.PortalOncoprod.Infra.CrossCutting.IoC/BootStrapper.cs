@@ -22,35 +22,24 @@ namespace SistemaIndexador.Infra.CrossCutting.IoC
             // Lifestyle.Scoped => Uma instancia unica para o request
 
             // App
-            
             container.Register<ITabelaRegrasDMSAppService, TabelaRegrasDMSAppService>(Lifestyle.Scoped);
             container.Register<IUsuarioTabelaRegrasDMSAppService, UsuarioTabelaAppService>(Lifestyle.Scoped);
             container.Register<IUsuarioAppService, UsuarioAppService>(Lifestyle.Scoped);
             container.Register<IGrupoSistemaTabelaRegrasDMSAppService, GrupoSistemaTabelaRegrasDMSAppService>(Lifestyle.Scoped);
 
-
-
             // Domain
             container.Register<IUsuarioTabelaPrecoService, UsuarioTabelaPrecoService>(Lifestyle.Scoped);
-
             container.Register<ITabelaRegrasDMSService, TabelaRegrasDMSService>(Lifestyle.Scoped);
             container.Register<IUsuarioService, UsuarioService>(Lifestyle.Scoped);
             container.Register<IGrupoSistemaTabelaPrecoService, GrupoSistemaTabelaPrecoService>(Lifestyle.Scoped);
-            
-
 
             // Infra Dados
-
             container.Register<ITabelaPrecoOncoprodRepository, TabelaRegrasDMSRepository>(Lifestyle.Scoped);
             container.Register<IUsuarioTabelaPrecoRepository, UsuarioTabelaPrecoRepository>(Lifestyle.Scoped);
             container.Register<IGrupoSistemaTabelaPrecoRepository, GrupoSistemaTabelaPrecoRepository>(Lifestyle.Scoped);
             container.Register<IUsuarioRepository, UsuariosRepository>(Lifestyle.Scoped);
             container.Register<IUnitOfWork, UnitOfWork>(Lifestyle.Scoped);
             container.Register<PortalOncoprodContext>(Lifestyle.Scoped);
-
-            
-            
-            //container.Register(typeof (IRepository<>), typeof (Repository<>));
 
             // Logging
             container.Register<ILogAuditoria, LogAuditoriaHelper>(Lifestyle.Scoped);
