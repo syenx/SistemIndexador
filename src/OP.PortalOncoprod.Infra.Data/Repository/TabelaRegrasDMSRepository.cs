@@ -17,11 +17,7 @@ using System.Linq.Expressions;
 
 namespace SistemaIndexador.Infra.Data.Repository
 {
-    public class TabelaRegrasDMSRepository :
-      SistemaIndexador.Infra.Data.Repository.Repository<TabelaRegrasDMS>,
-      ITabelaPrecoOncoprodRepository,
-      IRepository<TabelaRegrasDMS>,
-      IDisposable
+    public class TabelaRegrasDMSRepository : Repository<TabelaRegrasDMS>, ITabelaPrecoOncoprodRepository, IRepository<TabelaRegrasDMS>, IDisposable
     {
         public TabelaRegrasDMSRepository(PortalOncoprodContext context) : base(context)
         {
@@ -38,22 +34,24 @@ namespace SistemaIndexador.Infra.Data.Repository
         public void ObterPorCodigo(string id)
         {
             DbConnection connection = this.Db.Database.Connection;
+            #region query
             string sql = string.Format(@"SELECT [Id]
-      ,[Infotipo]
-      ,[Subinfotipo]
-      ,[FormularioKitAdmissao]
-      ,[OutrosDocumentosControlados]
-      ,[Obrigatorio]
-      ,[Regra]
-      ,[DescricaoOutrosDocs]
-      ,[NomeFunçcao]
-      ,[TipoMedida]
-      ,[NomeUsuario]
-      ,[Data]
-      ,[CampoDaCtg]
-      ,[GrupoAutorizacoes]
-      ,[CodGrupo]
-  FROM[SistemaIndexador].[dbo].[TabelaRegrasDMS] where id = {0}", id);
+                  ,[Infotipo]
+                  ,[Subinfotipo]
+                  ,[FormularioKitAdmissao]
+                  ,[OutrosDocumentosControlados]
+                  ,[Obrigatorio]
+                  ,[Regra]
+                  ,[DescricaoOutrosDocs]
+                  ,[NomeFunçcao]
+                  ,[TipoMedida]
+                  ,[NomeUsuario]
+                  ,[Data]
+                  ,[CampoDaCtg]
+                  ,[GrupoAutorizacoes]
+                  ,[CodGrupo]
+              FROM[SistemaIndexador].[dbo].[TabelaRegrasDMS] where id = {0}", id);
+            #endregion
             connection.QueryMultiple(sql, (object)new
             {
                 codigo = id
@@ -68,12 +66,10 @@ namespace SistemaIndexador.Infra.Data.Repository
             connection.Close();
         }
 
-        public Paged<TabelaRegrasDMS> ObterTodos(
-          string descricao,
-          int pageSize,
-          int pageNumber)
+        public Paged<TabelaRegrasDMS> ObterTodos(string descricao, int pageSize, int pageNumber)
         {
             DbConnection connection = this.Db.Database.Connection;
+            #region query
             string sql = @"SELECT [Id]
                           ,[Infotipo]
                           ,[Subinfotipo]
@@ -90,10 +86,11 @@ namespace SistemaIndexador.Infra.Data.Repository
                           ,[GrupoAutorizacoes]
                           ,[CodGrupo]
                       FROM[SistemaIndexador].[dbo].[TabelaRegrasDMS]";
+            #endregion
             IEnumerable<TabelaRegrasDMS> tabelaPrecoOncoprods = connection.QueryMultiple(sql).Read<TabelaRegrasDMS>();
             Paged<TabelaRegrasDMS> paged = new Paged<TabelaRegrasDMS>()
             {
-                 List = tabelaPrecoOncoprods
+                List = tabelaPrecoOncoprods
             };
             connection.Close();
             return paged;
@@ -101,24 +98,24 @@ namespace SistemaIndexador.Infra.Data.Repository
 
         public TabelaRegrasDMS ObterPorIdTabela(int id)
         {
+            #region query
             string sql = string.Format(@"SELECT [Id]
-      ,[Infotipo]
-      ,[Subinfotipo]
-      ,[FormularioKitAdmissao]
-      ,[OutrosDocumentosControlados]
-      ,[Obrigatorio]
-      ,[Regra]
-      ,[DescricaoOutrosDocs]
-      ,[NomeFunçcao]
-      ,[TipoMedida]
-      ,[NomeUsuario]
-      ,[Data]
-      ,[CampoDaCtg]
-      ,[GrupoAutorizacoes]
-      ,[CodGrupo]
-  FROM[SistemaIndexador].[dbo].[TabelaRegrasDMS]  WHERE id = '{0}'", id.ToString().PadLeft(5, '0'));
-
-
+                  ,[Infotipo]
+                  ,[Subinfotipo]
+                  ,[FormularioKitAdmissao]
+                  ,[OutrosDocumentosControlados]
+                  ,[Obrigatorio]
+                  ,[Regra]
+                  ,[DescricaoOutrosDocs]
+                  ,[NomeFunçcao]
+                  ,[TipoMedida]
+                  ,[NomeUsuario]
+                  ,[Data]
+                  ,[CampoDaCtg]
+                  ,[GrupoAutorizacoes]
+                  ,[CodGrupo]
+              FROM[SistemaIndexador].[dbo].[TabelaRegrasDMS]  WHERE id = '{0}'", id.ToString().PadLeft(5, '0'));
+            #endregion
             TabelaRegrasDMS tabelaPrecoOncoprod1 =
                 this.Db.Database.Connection.QueryMultiple(sql
                        ).Read<TabelaRegrasDMS>().FirstOrDefault<TabelaRegrasDMS>();
