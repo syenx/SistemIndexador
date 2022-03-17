@@ -41,7 +41,7 @@ namespace SistemaIndexador.Infra.CrossCutting.IoC
 
             // Infra Dados
 
-            container.Register<ITabelaPrecoOncoprodRepository, TabelaPrecoOncoprodRepository>(Lifestyle.Scoped);
+            container.Register<ITabelaPrecoOncoprodRepository, TabelaRegrasDMSRepository>(Lifestyle.Scoped);
             container.Register<IUsuarioTabelaPrecoRepository, UsuarioTabelaPrecoRepository>(Lifestyle.Scoped);
             container.Register<IGrupoSistemaTabelaPrecoRepository, GrupoSistemaTabelaPrecoRepository>(Lifestyle.Scoped);
             container.Register<IUsuarioRepository, UsuariosRepository>(Lifestyle.Scoped);

@@ -17,13 +17,13 @@ using System.Linq.Expressions;
 
 namespace SistemaIndexador.Infra.Data.Repository
 {
-    public class TabelaPrecoOncoprodRepository :
+    public class TabelaRegrasDMSRepository :
       SistemaIndexador.Infra.Data.Repository.Repository<TabelaRegrasDMS>,
       ITabelaPrecoOncoprodRepository,
       IRepository<TabelaRegrasDMS>,
       IDisposable
     {
-        public TabelaPrecoOncoprodRepository(PortalOncoprodContext context) : base(context)
+        public TabelaRegrasDMSRepository(PortalOncoprodContext context) : base(context)
         {
         }
 
