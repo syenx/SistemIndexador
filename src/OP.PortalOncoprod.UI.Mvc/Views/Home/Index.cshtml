@@ -1,52 +1,98 @@
 ﻿@model SistemaIndexador.Application.ViewModels.DadosIndexacaoViewModel
 
-<div class="modal show " role="dialog" aria-hidden="true" style="background-color: #ffffff; margin:50px 0 0 0 ">
-    <div class="card-group">
-        <div class="card col-lg-12">
-            <div class="modal-dialog " style="width:auto; ">
-                <div class="modal-content">
-                    <div class="modal-body">
-                        Matricula:
-                        <input type="text" name="txtMatricula" value="" style="width:100px" />
-                        CPF:
-                        <input type="text" name="txtCPF" value="" style="width:100px" />
-                        Referência:
-                        <input type="text" name="txtRef_a" value="" style="width:25px" /> / <input type="text" name="txtRef_b" value="" style="width:100px" />
-                        Validade:
-                        <input type="text" name="txtRef_b" value="" style="width:100px" />
 
-                    </div>
-                </div>
-                <div class="modal-content">
-                    <div class="modal-body">
 
-                        <div style=" padding: 10px 1px 1px 0 ">
-                            Tipo Doc:
-                            @{
-                                @Html.DropDownListFor(m => m.TipoDocSelected, new SelectList(Model.TipoDoc), "Selecione Tipo de Documento")
+<meta charset="utf-8">
 
-                            }
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+@using (Html.BeginForm("upload", "Home", Model, FormMethod.Post, new { @class = "form-horizontal", @id = "formAula" }))
+{
+
+
+
+
+    <div class="modal-dialog " style="width:auto">
+        <div class="modal-content">
+            <div class="modal-body" style="padding:10px 10px 45% 10px">
+                <form>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-7">
+                            <label>Matricula</label>
+                            @Html.TextBoxFor(model => model.matricula, new { @class = "form-control", maxlength = "255", })
+
                         </div>
                     </div>
-                </div>
-                <div class="modal-content">
+                    <div class="form-row">
+                        <div class="form-group col-md-7">
+                            <label for="inputCity">CPF</label>
+                            @Html.TextBoxFor(model => model.cpf, new { @class = "form-control", maxlength = "255", })
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputCity">Referencia</label>
+                            @Html.TextBoxFor(model => model.ref_a, new { @class = "form-control", maxlength = "255", })
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-6">
+                            <label for="inputCity">/</label>
+                            @Html.TextBoxFor(model => model.ref_b, new { @class = "form-control", maxlength = "255", })
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-7">
+                            <label for="inputCity">Validade</label>
+                            @Html.TextBoxFor(model => model.validade, new { @class = "form-control", maxlength = "255", })
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-7">
+                            <label for="inputCity">Tipo Documento</label>
+                            @Html.DropDownListFor(m => m.TipoDocSelected, new SelectList(Model.TipoDoc), "Selecione Tipo de Documento", new { @class = "form-control" })
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-md-7">
+                            <label for="inputCity">Tipo Documento</label>
+                            <input type="file" name="files[]" multiple="multiple" class="btn btn-secondary" />
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group col-md-7">
+                            <label for="inputCity">Visualizar Arquivos Indexados</label>
+                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Abrir</button>
+                        </div>
+                    </div>
+
+
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="container" >
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+
+                <!-- Modal content-->
+                <div class="modal-content" style="margin:40px 0 0 0">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Arquivos Indexados</h4>
+                    </div>
                     <div class="modal-body">
 
                         <form method="post" id="uploadForm" enctype="multipart/form-data">
                             <table class="table">
-                                <tr>
-                                    <td colspan="3">
-                                        <legend>Indexadar Arquivos</legend>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <div class="btn btn-secondary">
-                                            <input type="file" name="files[]" multiple="multiple" onchange="getFileSizeandName(this);" class="btn btn-secondary" />
-
-                                        </div>
-                                    </td>
-                                </tr>
                                 <tr>
                                     <td colspan="3">
                                         <div id="uploaddiv">
@@ -83,24 +129,33 @@
                                 </tr>
                                 <tr>
                                     <td colspan="3">
-                                        <button class="btn btn-primary" type="submit" id="tbnEnviarArquivos">Indexar</button>
-                                        <button class="btn" id="cancelButton">Cancel</button>
                                     </td>
                                 </tr>
                             </table>
 
 
                         </form>
+
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
                     </div>
                 </div>
+
             </div>
         </div>
 
     </div>
-</div>
 
+    <button class="btn btn-primary" type="submit" id="tbnEnviarArquivos">Indexar</button>
+    <button class="btn" id="cancelButton">Cancel</button>
+
+
+}
 
 <script type="text/javascript">
+
     var select = $('#uploadTable');
 
     function getFileSizeandName(input) {
@@ -123,6 +178,7 @@
 
     $(document).ready(function () {
         $('#tbnEnviarArquivos').on('click', function () {
+
             var data = new FormData();
             var files = $('[type="file"]').get(0).files;
 

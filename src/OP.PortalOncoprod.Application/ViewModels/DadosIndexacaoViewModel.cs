@@ -14,12 +14,13 @@ namespace SistemaIndexador.Application.ViewModels
 
         public DadosIndexacaoViewModel()
         {
-         
-
-
         }
 
-        public int idSelected { get; set; }
+        public string matricula { get; set; }
+        public string cpf { get; set; }
+        public string ref_a { get; set; }
+        public string ref_b { get; set; }
+        public string validade { get; set; }
 
         public List<string> TipoDoc { get; set; }
         public string TipoDocSelected { get; set; }
