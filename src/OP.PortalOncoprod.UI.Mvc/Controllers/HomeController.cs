@@ -19,6 +19,7 @@ namespace SistemaIndexador.UI.Mvc.Controllers
         public ActionResult Index()
         {
             DadosIndexacaoViewModel model = ListarDocumentos();
+            model.ListaAquivos = ListarArquivosParaIndexar();
 
             return View(model);
         }
@@ -69,28 +70,67 @@ namespace SistemaIndexador.UI.Mvc.Controllers
                 }
             }
 
-            if (Request.Files.Keys.Count <= 0)
+        }
+
+
+        public void RenameArquivos(DadosIndexacaoViewModel model)
+        {
+            MoverERenomearArquivos();
+        }
+
+
+        private void MoverERenomearArquivos()
+        {
+            DirectoryInfo DirOld = new DirectoryInfo(@"C:\Temp\UploadIndexador\old\");
+            string sourcePath = @"C:\Temp\UploadIndexador\old\";
+            string targetPath = @"C:\Temp\UploadIndexador\new\";
+
+            Directory.CreateDirectory(targetPath);
+
+            FileInfo[] Files = DirOld.GetFiles("*", SearchOption.AllDirectories);
+
+
+            foreach (FileInfo File in Files)
             {
-                Listar();
+
+                string FileName = File.FullName.Replace(DirOld.FullName, "");
+                string sourceFile = Path.Combine(sourcePath, FileName);
+                string destFile = Path.Combine(targetPath, FileName);
+
+                System.IO.File.Copy(sourceFile, destFile, true);
+
+
+                if (Directory.Exists(sourcePath))
+                {
+                    string[] files = Directory.GetFiles(sourcePath);
+
+                    foreach (string s in files)
+                    {
+                        FileName = Path.GetFileName(s);
+                        destFile = Path.Combine(targetPath, FileName);
+                        System.IO.File.Copy(s, destFile, true);
+                    }
+                }
             }
         }
 
 
-        private void Listar()
+        private List<string> ListarArquivosParaIndexar()
         {
-            DirectoryInfo Dir = new DirectoryInfo(@"C:\Temp\UploadIndexador\old\");
-            // Busca automaticamente todos os arquivos em todos os subdiretórios
-            FileInfo[] Files = Dir.GetFiles("*", SearchOption.AllDirectories);
+
+            DirectoryInfo DirOld = new DirectoryInfo(@"C:\Temp\UploadIndexador\new\");
+            List<string> lista = new List<string>();
+
+
+            FileInfo[] Files = DirOld.GetFiles("*", SearchOption.AllDirectories);
             foreach (FileInfo File in Files)
             {
-                // Retira o diretório iformado inicialmente
-                string FileName = File.FullName.Replace(Dir.FullName, "");
-                //     SeuListBox.Items.Add(FileName);
-
-
-                
+                string FileName = File.FullName.Replace(DirOld.FullName, "");
+                lista.Add(FileName);
             }
-           
+
+            return lista;
+
         }
     }
 }

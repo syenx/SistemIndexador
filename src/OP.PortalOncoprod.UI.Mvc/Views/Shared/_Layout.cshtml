@@ -9,6 +9,8 @@
     <link href="~/Content/bootstrap.css" rel="stylesheet" />
     <link href="~/Content/dataTables.bootstrap.css" rel="stylesheet" />
     <script src="~/Scripts/jquery-1.10.2.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.15/jquery.mask.js"></script>
 </head>
 <body>
     <div id="wrapper">
@@ -25,17 +27,15 @@
                              <img src="~/Content/img/Logo_simPAR.png" alt="" class="img-responsive"  width="80px"  />
                         </span>
                     </a>
-                    <a href="@Url.Action("listar"," TabelaRegrasDMS")">
-                        <span class="navbar-brand">
+                    <!--<a href="@Url.Action("index"," TabelaRegrasDMS")">
+                        <span class="navbar-brand">-->
                             @* <img src="~/Content/img/Logo_JSL.png" alt=""  width="300px"  />*@
-                        </span>
-                    </a>
+                        <!--</span>
+                    </a>-->
                 </div>
-                <div class="navbar-collapse collapse">
-                    <ul class="nav navbar-nav">
-                        <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                        <li>@Html.ActionLink("RegrasDMS", "Index", "TabelaRegrasDMS")</li>
-
+                <div class="navbar-collapse collapse"  style="margin:7px 0 0 0">
+                    <ul class="nav navbar-nav" style="color:aqua">
+                        <li>@Html.ActionLink("Regras DMS", "Index", "TabelaRegrasDMS")</li>
                     </ul>
                
 
@@ -60,11 +60,7 @@
                                     <li> @Html.ActionLink("Sair", "Logout", "Usuario", routeValues: null, htmlAttributes: new { id = "logoutForm", @class = "navbar-right" })</li>
                                 </ul>
                             }
-
                         }
-
-
-
                     }
 
                     <ul class="nav navbar-nav navbar-right">
@@ -81,8 +77,6 @@
             @RenderBody()
         </div>
     </div>
-    @*@Html.Partial("_Footer")*@
-
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
@@ -95,14 +89,5 @@
     <script src="~/Scripts/jquery.flashmessage.js"></script>
     <script src="~/Scripts/UsuarioScript.js"></script>
     @RenderSection("scripts", false)
-
-    <script>
-                //$(document).ready(function () {
-                //    $('.tabela').dataTable({
-                //        "language": { "paginate": { "next": "Próximo", "sPrevious": "Anterior", "search": "Pesquisar" }}
-                //    });
-
-                //});
-    </script>
 </body>
 </html>

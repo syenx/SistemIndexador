@@ -16,6 +16,8 @@ namespace SistemaIndexador.Application.ViewModels
         {
         }
 
+        public List<string> ListaAquivos { get; set; }
+
         public string matricula { get; set; }
         public string cpf { get; set; }
         public string ref_a { get; set; }
