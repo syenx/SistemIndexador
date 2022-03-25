@@ -2,7 +2,6 @@
 
 
 <script>
-
     $(document).ready(function () {
         $("#cpf").mask("999.999.999-99");
         $("#matricula").mask("99999999999");
@@ -17,7 +16,7 @@
 {
     <div class="modal-dialog " style="width:auto">
         <div class="modal-content">
-            <div class="modal-body" style="padding:10px 10px 40% 10px">
+            <div class="modal-body" style="padding:10px 10px 35% 10px">
                 <form style=" margin-bottom: 0px;">
 
                     <div class="form-row">
@@ -34,14 +33,14 @@
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-md-1">
+                        <div class="form-group col-md-4">
                             <label for="inputCity">Referencia</label>
                             @Html.TextBoxFor(model => model.ref_a, new { @class = "form-control" })
                         </div>
                     </div>
                     <div class="form-row">
-                        <div class="form-group col-md-7" style=" margin: 5px 0 0 0;">
-                            <label for="inputCity"> </label>
+                        <div class="form-group col-md-8" style="">
+                            <label for="inputCity">/</label>
                             @Html.TextBoxFor(model => model.ref_b, new { @class = "form-control" })
                         </div>
                     </div>
@@ -55,159 +54,157 @@
                         <div class="form-group col-md-7">
                             <label for="inputCity">Tipo Documento</label>
                             @Html.DropDownListFor(m => m.TipoDocSelected, new SelectList(Model.TipoDoc), "Selecione Tipo de Documento", new { @class = "form-control" })
-
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="form-group col-md-7">
-                            <label for="inputCity">Tipo Documento</label>
+                            <label for="inputCity">Anexar Documento</label>
                             <input type="file" name="files[]" multiple="multiple" onchange="getFileSizeandName(this);" class="btn-warning" />
-
-                        </div>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group col-md-7">
-                            <button class="btn btn-primary" type="submit" id="tbnEnviarArquivos">Salvar Arquivos</button>
-                            <button class="btn" id="cancelButton">Cancel</button>
                         </div>
                     </div>
                 </form>
             </div>
+
+            <div style="float:right;">
+                <label for="inputCity">Visualizar Arquivos Renomeados</label>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal2">Indexados</button>
+            </div>
+
+            <div style="float:left;">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Visualizar</button>
+                <label for="inputCity">Arquivos Indexados</label>
+            </div>
         </div>
+    </div>
+
+
+
+    <div class="container">
+        <div class="modal fade" id="myModal" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content" style="margin:40px 0 0 0">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Arquivos Indexados</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        <form method="post" id="uploadForm" enctype="multipart/form-data">
+                            <table class="table">
+                                <tr>
+                                    <td colspan="3">
+                                        <div id="uploaddiv">
+                                            <table id="uploadTable" class="table">
+                                                <thead>
+                                                </thead>
+                                                <tbody id="tbodyid">
+                                                    <tr id="tr1">
+                                                        <td id="filetd1"></td>
+                                                        <td id="filesizetd1"></td>
+                                                    </tr>
+                                                    <tr id="tr2">
+                                                        <td id="filetd2"></td>
+                                                        <td id="filesizetd2"></td>
+                                                    </tr>
+                                                    <tr id="tr3">
+                                                        <td id="filetd3"></td>
+                                                        <td id="filesizetd3"></td>
+                                                    </tr>
+                                                    <tr id="tr4">
+                                                        <td id="filetd4"></td>
+                                                        <td id="filesizetd4"></td>
+                                                    </tr>
+                                                </tbody>
+                                                <tfoot>
+                                                    <tr>
+                                                        <td id="filecount"></td>
+                                                        <td id="totalsize"></td>
+                                                    </tr>
+                                                </tfoot>
+                                            </table>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3">
+                                    </td>
+                                </tr>
+                            </table>
+                            <div class="form-row">
+                                <div class="form-group col-md-7">
+
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button class="btn btn-primary" type="submit" id="tbnEnviarArquivos">Salvar Arquivos</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+}
+
+
+@if (Model != null && Model.ListaAquivos.Count > 0)
+{
+    <div class="container">
+        <div class="modal fade" id="myModal2" role="dialog">
+            <div class="modal-dialog">
+                <div class="modal-content" style="margin:40px 0 0 0">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Arquivos Indexados</h4>
+                    </div>
+                    <div class="modal-body">
+
+                        <form method="post" id="uploadForm" enctype="multipart/form-data">
+                            @using (Html.BeginForm("RenameArquivos", "Home", FormMethod.Post))
+                            {
+                                <table class="table table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Nome Arquivo</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+
+                                        @if (Model != null && Model.ListaAquivos.Count > 0)
+                                        {
+                                            foreach (var item in Model.ListaAquivos)
+                                            {
+                                                <tr>
+                                                    <td>@item</td>
+                                                </tr>
+                                            }
+                                        }
+
+                                    </tbody>
+                                </table>
+
+
+                            }
+                        </form>
+
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                        <button class="btn btn-primary" type="submit" id="tbnEnviarArquivos">Renomear</button>
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
     </div>
 }
 
-<div style="float:right;">
-    <label for="inputCity">Visualizar Arquivos Renomeados</label>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal2">Indexados</button>
-</div>
-<div style="float:left;">
-    <label for="inputCity">Visualizar Arquivos Indexados</label>
-    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Abrir</button>
-</div>
-
-<div class="container">
-    <div class="modal fade" id="myModal2" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content" style="margin:40px 0 0 0">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Arquivos Indexados</h4>
-                </div>
-                <div class="modal-body">
-
-                    <form method="post" id="uploadForm" enctype="multipart/form-data">
-                        @using (Html.BeginForm("RenameArquivos", "Home", FormMethod.Post))
-                        {
-                            <table class="table table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>Nome Arquivo</th>
-                                    </tr>
-                                </thead>
-
-                                <tbody>
-
-                                    @if (Model != null && Model.ListaAquivos.Count > 0)
-                                    {
-                                        foreach (var item in Model.ListaAquivos)
-                                        {
-                                            <tr>
-                                                <td>@item</td>
-                                            </tr>
-                                        }
-                                    }
-
-                                </tbody>
-                            </table>
-
-                            <div class="form-row">
-                                <div class="form-group col-md-7">
-                                    <button class="btn btn-primary" type="submit" id="tbnEnviarArquivos">Renomear</button>
-                                    <button class="btn" id="cancelButton">Cancel</button>
-                                </div>
-                            </div>
-                        }
-                    </form>
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-</div>
-
-<div class="container">
-    <div class="modal fade" id="myModal" role="dialog">
-        <div class="modal-dialog">
-            <div class="modal-content" style="margin:40px 0 0 0">
-                <div class="modal-header">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-                    <h4 class="modal-title">Arquivos Indexados</h4>
-                </div>
-                <div class="modal-body">
-
-                    <form method="post" id="uploadForm" enctype="multipart/form-data">
-                        <table class="table">
-                            <tr>
-                                <td colspan="3">
-                                    <div id="uploaddiv">
-                                        <table id="uploadTable" class="table">
-                                            <thead>
-                                            </thead>
-                                            <tbody id="tbodyid">
-                                                <tr id="tr1">
-                                                    <td id="filetd1"></td>
-                                                    <td id="filesizetd1"></td>
-                                                </tr>
-                                                <tr id="tr2">
-                                                    <td id="filetd2"></td>
-                                                    <td id="filesizetd2"></td>
-                                                </tr>
-                                                <tr id="tr3">
-                                                    <td id="filetd3"></td>
-                                                    <td id="filesizetd3"></td>
-                                                </tr>
-                                                <tr id="tr4">
-                                                    <td id="filetd4"></td>
-                                                    <td id="filesizetd4"></td>
-                                                </tr>
-                                            </tbody>
-                                            <tfoot>
-                                                <tr>
-                                                    <td id="filecount"></td>
-                                                    <td id="totalsize"></td>
-                                                </tr>
-                                            </tfoot>
-                                        </table>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td colspan="3">
-                                </td>
-                            </tr>
-                        </table>
-
-
-                    </form>
-
-
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                </div>
-            </div>
-
-        </div>
-    </div>
-
-</div>
 
 <script type="text/javascript">
 

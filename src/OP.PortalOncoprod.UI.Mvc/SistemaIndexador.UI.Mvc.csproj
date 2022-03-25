@@ -212,6 +212,7 @@
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\TabelaRegrasDMSController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
+    <Compile Include="Controllers\VisualizadorController.cs" />
     <Compile Include="Extensions\FlashMessageExtensions.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -259,6 +260,9 @@
     <Content Include="Content\imagens\sort_both.png" />
     <Content Include="Content\imagens\sort_desc.png" />
     <Content Include="Content\imagens\sort_desc_disabled.png" />
+    <None Include="Scripts\jquery-1.10.2.intellisense.js" />
+    <Content Include="Scripts\jquery-1.10.2.js" />
+    <Content Include="Scripts\jquery-1.10.2.min.js" />
     <Content Include="Scripts\jquery.maskeditinput.js" />
     <Content Include="Scripts\UsuarioScript.js" />
     <Content Include="Scripts\cldr.js" />
@@ -306,6 +310,7 @@
     <Content Include="Scripts\bootstrap.bundle.min.js.map" />
     <Content Include="Scripts\bootstrap.js.map" />
     <Content Include="Scripts\bootstrap.min.js.map" />
+    <Content Include="Scripts\jquery-1.10.2.min.map" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.flashmessage.js" />
     <Content Include="Scripts\jquery.validate.js" />
@@ -365,6 +370,7 @@
     <Content Include="Views\TabelaRegrasDMS\Create.cshtml" />
     <Content Include="Views\TabelaRegrasDMS\Visualizar.cshtml" />
     <Content Include="Views\TabelaRegrasDMS\ImportaExcel.cshtml" />
+    <Content Include="Views\Visualizador\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

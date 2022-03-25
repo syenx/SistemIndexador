@@ -24,21 +24,14 @@
                     </button>
                     <a href="@Url.Action("Index","Home")">
                         <span class="navbar-brand">
-                             <img src="~/Content/img/Logo_simPAR.png" alt="" class="img-responsive"  width="80px"  />
+                            <img src="~/Content/img/Logo_simPAR.png" alt="" class="img-responsive" width="90px" />
                         </span>
                     </a>
-                    <!--<a href="@Url.Action("index"," TabelaRegrasDMS")">
-                        <span class="navbar-brand">-->
-                            @* <img src="~/Content/img/Logo_JSL.png" alt=""  width="300px"  />*@
-                        <!--</span>
-                    </a>-->
                 </div>
-                <div class="navbar-collapse collapse"  style="margin:7px 0 0 0">
+                <div class="navbar-collapse collapse" style="margin:7px 0 0 0">
                     <ul class="nav navbar-nav" style="color:aqua">
                         <li>@Html.ActionLink("Regras DMS", "Index", "TabelaRegrasDMS")</li>
                     </ul>
-               
-
                     @{
                         string usuarioNome = "";
                         string primeiroNome = "";
@@ -62,13 +55,9 @@
                             }
                         }
                     }
-
                     <ul class="nav navbar-nav navbar-right">
                         <li>@Html.ActionLink("Login", "Login", "Usuario", routeValues: null, htmlAttributes: new { id = "loginLink" })</li>
                     </ul>
-
-
-                    @*@Html.Partial("_LoginPartial")*@
                 </div>
             </div>
         </div>
