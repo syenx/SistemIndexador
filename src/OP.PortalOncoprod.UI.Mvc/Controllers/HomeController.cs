@@ -54,8 +54,11 @@ namespace SistemaIndexador.UI.Mvc.Controllers
             return View();
         }
 
-        public void upload(DadosIndexacaoViewModel model)
+
+        [HttpPost]
+        public void Upload(DadosIndexacaoViewModel data)
         {
+            var regraSelecionada = _tabelaRegrasDMSAppService.ObterTodos().Find(f => f.DescricaoOutrosDocs == data.TipoDocSelected); ;
             string directory = @"C:\Temp\UploadIndexador\old\";
 
 
@@ -65,8 +68,9 @@ namespace SistemaIndexador.UI.Mvc.Controllers
 
                 if (file != null && file.ContentLength > 0)
                 {
-                    var fileName = Path.GetFileName(file.FileName);
-                    file.SaveAs(Path.Combine(directory, fileName));
+
+                //    var fileName = data.matricula + "-" + data.cpf.Replace(".","").Replace("-","") + "-" + tipoArquivo.Regra ;//Path.GetFileName(file.FileName);
+                //    file.SaveAs(Path.Combine(directory, fileName));
                 }
             }
 

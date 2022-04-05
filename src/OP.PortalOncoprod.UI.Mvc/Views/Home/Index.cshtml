@@ -12,142 +12,118 @@
 </script>
 
 
-@using (Html.BeginForm("index", "Home", FormMethod.Post))
-{
-    <div class="modal-dialog " style="width:auto">
-        <div class="modal-content">
-            <div class="modal-body" style="padding:10px 10px 35% 10px">
-                <form style=" margin-bottom: 0px;">
+@*@using (Html.BeginForm("Upload", "Home", FormMethod.Post))
+    {*@
+<div class="modal-dialog " style="width:auto">
+    <div class="modal-content">
+        <div class="modal-body" style=" padding: 10px 10px 20% 10px;">
+            <form style=" margin-bottom: 0px; " id="formDados">
 
-                    <div class="form-row">
-                        <div class="form-group col-md-12">
-                            <label>Matricula</label>
-                            @Html.TextBoxFor(model => model.matricula, new { @class = "form-control " })
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label>Matricula</label>
+                        @Html.TextBoxFor(model => model.matricula, new { @class = "form-control " })
 
-                        </div>
                     </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-12">
-                            <label for="inputCity">CPF</label>
-                            @Html.TextBoxFor(model => model.cpf, new { @class = "form-control" })
-                        </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="inputCity">CPF</label>
+                        @Html.TextBoxFor(model => model.cpf, new { @class = "form-control" })
                     </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-4">
-                            <label for="inputCity">Referencia</label>
-                            @Html.TextBoxFor(model => model.ref_a, new { @class = "form-control" })
-                        </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-4">
+                        <label for="inputCity">Referencia</label>
+                        @Html.TextBoxFor(model => model.ref_a, new { @class = "form-control" })
                     </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-8" style="">
-                            <label for="inputCity">/</label>
-                            @Html.TextBoxFor(model => model.ref_b, new { @class = "form-control" })
-                        </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-8" style="">
+                        <label for="inputCity">/</label>
+                        @Html.TextBoxFor(model => model.ref_b, new { @class = "form-control" })
                     </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-7">
-                            <label for="inputCity">Validade</label>
-                            @Html.TextBoxFor(model => model.validade, new { @class = "form-control" })
-                        </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="inputCity">Validade</label>
+                        @Html.TextBoxFor(model => model.validade, new { @class = "form-control" })
                     </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-7">
-                            <label for="inputCity">Tipo Documento</label>
-                            @Html.DropDownListFor(m => m.TipoDocSelected, new SelectList(Model.TipoDoc), "Selecione Tipo de Documento", new { @class = "form-control" })
-                        </div>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="inputCity">Tipo Documento</label>
+                        @Html.DropDownListFor(m => m.TipoDocSelected, new SelectList(Model.TipoDoc), "Selecione Tipo de Documento", new { @class = "form-control" })
                     </div>
-                    <div class="form-row">
-                        <div class="form-group col-md-7">
-                            <label for="inputCity">Anexar Documento</label>
-                            <input type="file" name="files[]" multiple="multiple" onchange="getFileSizeandName(this);" class="btn-warning" />
-                        </div>
-                    </div>
-                </form>
-            </div>
-
-            <div style="float:right;">
-                <label for="inputCity">Visualizar Arquivos Renomeados</label>
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal2">Indexados</button>
-            </div>
-
-            <div style="float:left;">
-                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Visualizar</button>
-                <label for="inputCity">Arquivos Indexados</label>
-            </div>
-        </div>
-    </div>
-
-
-
-    <div class="container">
-        <div class="modal fade" id="myModal" role="dialog">
-            <div class="modal-dialog">
-                <div class="modal-content" style="margin:40px 0 0 0">
-                    <div class="modal-header">
-                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-                        <h4 class="modal-title">Arquivos Indexados</h4>
-                    </div>
-                    <div class="modal-body">
-
-                        <form method="post" id="uploadForm" enctype="multipart/form-data">
-                            <table class="table">
-                                <tr>
-                                    <td colspan="3">
-                                        <div id="uploaddiv">
-                                            <table id="uploadTable" class="table">
-                                                <thead>
-                                                </thead>
-                                                <tbody id="tbodyid">
-                                                    <tr id="tr1">
-                                                        <td id="filetd1"></td>
-                                                        <td id="filesizetd1"></td>
-                                                    </tr>
-                                                    <tr id="tr2">
-                                                        <td id="filetd2"></td>
-                                                        <td id="filesizetd2"></td>
-                                                    </tr>
-                                                    <tr id="tr3">
-                                                        <td id="filetd3"></td>
-                                                        <td id="filesizetd3"></td>
-                                                    </tr>
-                                                    <tr id="tr4">
-                                                        <td id="filetd4"></td>
-                                                        <td id="filesizetd4"></td>
-                                                    </tr>
-                                                </tbody>
-                                                <tfoot>
-                                                    <tr>
-                                                        <td id="filecount"></td>
-                                                        <td id="totalsize"></td>
-                                                    </tr>
-                                                </tfoot>
-                                            </table>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td colspan="3">
-                                    </td>
-                                </tr>
-                            </table>
-                            <div class="form-row">
-                                <div class="form-group col-md-7">
-
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button class="btn btn-primary" type="submit" id="tbnEnviarArquivos">Salvar Arquivos</button>
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-9">
+                        <label for="inputCity">Anexar Documento</label>
+                        <input type="file" name="files[]" multiple="multiple" onchange="getFileName(this);" class="btn-warning" />
                     </div>
                 </div>
 
+            </form>
+            <div class="form-row" style="float:right">
+                <div class="form-group col-md-12">
+                    <button class="btn btn-primary" type="submit" id="tbnEnviarArquivos">Salvar Arquivos</button>
+                </div>
             </div>
         </div>
-    </div>
 
-}
+        <div style="float:right;">
+            <label for="inputCity">Visualizar Arquivos Renomeados</label>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal2">Indexados</button>
+        </div>
+
+        <div style="float:left;">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Visualizar</button>
+            <label for="inputCity">Arquivos Indexados</label>
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container">
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content" style="margin:100px 0 0 0">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Arquivos Indexados</h4>
+                </div>
+                <div class="modal-body">
+                    <form method="post" id="uploadForm" enctype="multipart/form-data">
+                        <table class="table">
+                            <tr>
+                                <td colspan="3">
+                                    <div id="uploaddiv">
+                                        <table id="uploadTable" class="table">
+                                            <thead>
+                                                <tr><th>Nome Arquivo</th> </tr>
+                                            </thead>
+                                            <tbody id="tbodyid">
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </td>
+                                <td colspan="4">
+                                    <iframe srcdoc="" id="tbodyid">
+                                    </iframe>
+                                </td>
+                            </tr>
+                        </table>
+                    </form>
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+</div>
+
+@*}*@
 
 
 @if (Model != null && Model.ListaAquivos.Count > 0)
@@ -205,53 +181,58 @@
     </div>
 }
 
-
 <script type="text/javascript">
 
-    function getFileSizeandName(input) {
+    function getFileName(input) {
         var select = $('#uploadTable');
         for (var i = 0; i < input.files.length; i++) {
-            var filesizeInBytes = input.files[i].size;
-            var filesizeInMB = (filesizeInBytes / (1024 * 1024)).toFixed(2);
             var filename = input.files[i].name;
-
-
-            if (i <= 4) {
-                $('#filetd' + i + '').text(filename);
-                $('#filesizetd' + i + '').text(filesizeInMB);
-            }
-            else if (i > 4) {
-                select.append($('<tr id=tr' + i + '><td id=filetd' + i + '>' + filename + '</td><td id=filesizetd' + i + '>' + filesizeInMB + '</td></tr>'));
-            }
+            select.append($('<tr id=tr' + i + '><td id=filetd' + i + '>' + filename + '</td></tr>'));
         }
     }
 
     $(document).ready(function () {
         $('#tbnEnviarArquivos').on('click', function () {
+            if (ValidaCamposPreenchidos()) {
 
-            var data = new FormData();
-            var files = $('[type="file"]').get(0).files;
+                var data = new FormData();
+                var files = $('[type="file"]').get(0).files;
+                for (var i = 0; i < files.length; i++) {
+                    data.append("file", files[i]);
+                }
 
-            for (var i = 0; i < files.length; i++) {
-                data.append("file", files[i]);
+                data.append("matricula", $("#matricula").val());
+                data.append("cpf", $("#cpf").val());
+                data.append("ref_a", $("#ref_a").val());
+                data.append("validade", $("#validade").val());
+                data.append("TipoDocSelected", $("#TipoDocSelected").val());
+
+                $.ajax({
+                    type: "POST",
+                    url: "/Home/Upload",
+                    contentType: false,
+                    processData: false,
+                    data: data,
+                    success: function (message) {
+                        window.location.href = "/Home/Index"
+                    },
+                    error: function () {
+                        //code
+                    }
+                });
             }
 
-            $.ajax({
-                type: "POST",
-                url: "\\Home\\upload",
-                type: 'POST',
-                data: data,
-                cache: false,
-                contentType: false,
-                processData: false,
-                success: function (data) {
-
-                    alert('Success!')
-                }
-            });
         })
     });
+    function ValidaCamposPreenchidos() {
 
+        if ($("#matricula").val() == "" && $("#cpf").val() == "" && $("#ref_a").val() == "" && $("#validade").val() == "" && $("#TipoDocSelected").val() == "") {
+            alert("Favor verificar campos");
+            return false;
+        } else {
+            return true;
+        }
+    }
 
 
 </script>

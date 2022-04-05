@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
+using System.Web;
 
 namespace SistemaIndexador.Application.ViewModels
 {
@@ -15,7 +16,7 @@ namespace SistemaIndexador.Application.ViewModels
         public DadosIndexacaoViewModel()
         {
         }
-
+        public HttpPostedFileBase files { get; set; }
         public List<string> ListaAquivos { get; set; }
 
         public string matricula { get; set; }
