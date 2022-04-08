@@ -59,7 +59,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-9">
                         <label for="inputCity">Anexar Documento</label>
-                        <input type="file" name="files[]" multiple="multiple" onchange="getFileName(this); previewImagem();" class="btn-warning" />
+                        <input type="file" name="files[]" multiple="multiple" onchange="getFileName(this);" class="btn-warning" />
                     </div>
                 </div>
 
@@ -69,17 +69,18 @@
                     <button class="btn btn-primary" type="submit" id="tbnEnviarArquivos">Salvar Arquivos</button>
                 </div>
             </div>
+            <div style="float:right;">
+                <label for="inputCity">Visualizar Arquivos Renomeados</label>
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal2">Indexados</button>
+            </div>
+
+            <div style="float:left;">
+                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Visualizar</button>
+                <label for="inputCity">Arquivos Indexados</label>
+            </div>
         </div>
 
-        <div style="float:right;">
-            <label for="inputCity">Visualizar Arquivos Renomeados</label>
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal2">Indexados</button>
-        </div>
-
-        <div style="float:left;">
-            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">Visualizar</button>
-            <label for="inputCity">Arquivos Indexados</label>
-        </div>
+       
     </div>
 </div>
 
@@ -106,9 +107,6 @@
                                             <tbody id="tbodyid"></tbody>
                                         </table>
                                     </div>
-                                </td>
-                                <td colspan="4">
-                                    <img style="width: 150px; height: 150px;"><br><br>
                                 </td>
                             </tr>
                         </table>
@@ -137,52 +135,51 @@
                     <div class="modal-body">
 
                         <form method="post" id="uploadForm" enctype="multipart/form-data">
-                            @using (Html.BeginForm("RenameArquivos", "Home", FormMethod.Post))
-                            {
-                                <table class="table table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>Nome Arquivo</th>
-                                        </tr>
-                                    </thead>
 
-                                    <tbody>
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Nome Arquivo</th>
+                                    </tr>
+                                </thead>
 
-                                        @if (Model != null && Model.ListaAquivos.Count > 0)
+                                <tbody>
+
+                                    @if (Model != null && Model.ListaAquivos.Count > 0)
+                                    {
+
+                                        for (int i = 0; i < Model.ListaAquivos.Count; i++)
                                         {
 
-                                            for (int i = 0; i < Model.ListaAquivos.Count; i++)
-                                            {
+                                            <tr>
+                                                <td>
+                                                    <div class="accordion" id="accordionExample">
+                                                        <div class="card">
+                                                            <div class="card-header" id="headingOne">
+                                                                <h2 class="mb-0">
+                                                                    <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse_@i" aria-controls="collapseOne">
+                                                                        @Model.ListaAquivos[i].Nome;
+                                                                    </button>
+                                                                </h2>
+                                                            </div>
 
-                                                <tr>
-                                                    <td>
-                                                        <div class="accordion" id="accordionExample">
-                                                            <div class="card">
-                                                                <div class="card-header" id="headingOne">
-                                                                    <h2 class="mb-0">
-                                                                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse_@i" aria-controls="collapseOne">
-                                                                            @Model.ListaAquivos[i].Nome;
-                                                                        </button>
-                                                                    </h2>
-                                                                </div>
-
-                                                                <div id="collapse_@i" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-                                                                    <div class="card-body">
-                                                                        <iframe src="data:application/pdf;base64, @Model.ListaAquivos[i].ImagemArquivo" style=" width: 100%;height: 600px"></iframe>
-                                                                    </div>
+                                                            <div id="collapse_@i" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                                                <div class="card-body">
+                                                                    <iframe src="data:application/pdf;base64, @Model.ListaAquivos[i].ImagemArquivo" style=" width: 100%;height: 600px"></iframe>
                                                                 </div>
                                                             </div>
                                                         </div>
-                                                    </td>
-                                                </tr>
-                                            }
+                                                    </div>
+                                                </td>
+                                            </tr>
                                         }
+                                    }
 
-                                    </tbody>
-                                </table>
+                                </tbody>
+                            </table>
 
 
-                            }
+
                         </form>
 
                     </div>
@@ -202,33 +199,30 @@
 
 <script type="text/javascript">
 
+
     function getFileName(input) {
+
         var select = $('#uploadTable');
+        var cont = 0;
         for (var i = 0; i < input.files.length; i++) {
             var filename = input.files[i].name;
 
+            var file = new FileReader();
+            file.onload = function (e) {
+                document.getElementById("preview").src = e.target.result;
+            };
+            file.readAsDataURL(input.files[i]);
 
-            select.append($('<tr id=tr' + i + '><td id=filetd' + i + '>' + filename + '</td></tr>'));
+            select.append($('<tr id=tr' + i + '><td id=filetd' + i + '><div class="accordion" id="accordionExample"><div class="card"><div class="card-header" id="headingOne"><h2 class="mb-0"><button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse_' + i + '" aria-controls="collapseOne">' + filename + '</button></h2></div><div id="collapse_' + i + '" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample"><div class="card-body"> <iframe  id="preview" src=""  style=" width: 100%;height: 600px"></iframe></div></div></div></div></td></tr>'));
+
+
 
         }
+
+
     }
 
-    function previewImagem() {
-        var imagem = document.querySelector('input[name=imagem]').files[0];
-        var preview = document.querySelector('img');
 
-        var reader = new FileReader();
-
-        reader.onloadend = function () {
-            preview.src = reader.result;
-        }
-
-        if (imagem) {
-            reader.readAsDataURL(imagem);
-        } else {
-            preview.src = "";
-        }
-    }
 
     $(document).ready(function () {
         $('#tbnEnviarArquivos').on('click', function () {
