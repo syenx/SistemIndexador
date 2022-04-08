@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
+using System.Text;
 using System.Web;
 using System.Web.Mvc;
-
+using OP.PortalOncoprod.Application.ViewModels;
 using SistemaIndexador.Application.Interfaces;
 using SistemaIndexador.Application.ViewModels;
 
@@ -12,6 +14,8 @@ namespace SistemaIndexador.UI.Mvc.Controllers
     public class HomeController : BaseController
     {
         ITabelaRegrasDMSAppService _tabelaRegrasDMSAppService;
+        private static readonly ImageConverter _imageConverter = new ImageConverter();
+
 
         public HomeController(ITabelaRegrasDMSAppService TabelaRegrasDMSAppService)
         {
@@ -60,7 +64,7 @@ namespace SistemaIndexador.UI.Mvc.Controllers
         [HttpPost]
         public void Upload(DadosIndexacaoViewModel data)
         {
-            var regraSelecionada = _tabelaRegrasDMSAppService.ObterTodos().Find(f => f.DescricaoOutrosDocs.Contains(data.TipoDocSelected)); 
+            var regraSelecionada = _tabelaRegrasDMSAppService.ObterTodos().Find(f => f.DescricaoOutrosDocs.Contains(data.TipoDocSelected));
             string directory = @"C:\Temp\UploadIndexador\new\";
             List<byte[]> pdfs = new List<byte[]>();
 
@@ -80,14 +84,14 @@ namespace SistemaIndexador.UI.Mvc.Controllers
                     }
                     //string thePictureDataAsString = Convert.ToBase64String(thePictureAsBytes);
 
-                   //    file.SaveAs(Path.Combine(directory, fileName));
+                    //    file.SaveAs(Path.Combine(directory, fileName));
                 }
             }
-            var fileName = data.matricula + "-" + data.cpf.Replace(".", "").Replace("-", "") + "-" + regraSelecionada.Regra+ ".PDF";//Path.GetFileName(file.FileName);
+            var fileName = data.matricula + "-" + data.cpf.Replace(".", "").Replace("-", "") + "-" + regraSelecionada.Regra + ".PDF";//Path.GetFileName(file.FileName);
 
             var mergePDF = MergePdf(pdfs);
-       
-            System.IO.FileStream stream = new FileStream(directory+ fileName, FileMode.CreateNew);
+
+            System.IO.FileStream stream = new FileStream(directory + fileName, FileMode.CreateNew);
             System.IO.BinaryWriter writer = new BinaryWriter(stream);
             writer.Write(mergePDF, 0, mergePDF.Length);
             writer.Close();
@@ -162,22 +166,30 @@ namespace SistemaIndexador.UI.Mvc.Controllers
         }
 
 
-        private List<string> ListarArquivosParaIndexar()
+        private List<DadosArquivoViewModel> ListarArquivosParaIndexar()
         {
 
             DirectoryInfo DirOld = new DirectoryInfo(@"C:\Temp\UploadIndexador\new\");
-            List<string> lista = new List<string>();
-
+            List<DadosArquivoViewModel> lista = new List<DadosArquivoViewModel>();
 
             FileInfo[] Files = DirOld.GetFiles("*", SearchOption.AllDirectories);
             foreach (FileInfo File in Files)
             {
-                string FileName = File.FullName.Replace(DirOld.FullName, "");
-                lista.Add(FileName);
+                DadosArquivoViewModel dadosArquivoViewModel = new DadosArquivoViewModel();
+
+                dadosArquivoViewModel.Nome = File.FullName.Replace(DirOld.FullName, "");
+                byte[] arquivoBuffer;
+
+                arquivoBuffer = System.IO.File.ReadAllBytes(File.FullName);
+
+                dadosArquivoViewModel.ImagemArquivo = Convert.ToBase64String(arquivoBuffer);
+
+                lista.Add(dadosArquivoViewModel);
             }
 
             return lista;
 
         }
+      
     }
 }

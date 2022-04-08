@@ -16,7 +16,7 @@
     {*@
 <div class="modal-dialog " style="width:auto">
     <div class="modal-content">
-        <div class="modal-body" style=" padding: 10px 10px 20% 10px;">
+        <div class="modal-body" style=" padding: 10px 10px 9% 10px;">
             <form style=" margin-bottom: 0px; " id="formDados">
 
                 <div class="form-row">
@@ -59,7 +59,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-9">
                         <label for="inputCity">Anexar Documento</label>
-                        <input type="file" name="files[]" multiple="multiple" onchange="getFileName(this);" class="btn-warning" />
+                        <input type="file" name="files[]" multiple="multiple" onchange="getFileName(this); previewImagem();" class="btn-warning" />
                     </div>
                 </div>
 
@@ -103,14 +103,12 @@
                                             <thead>
                                                 <tr><th>Nome Arquivo</th> </tr>
                                             </thead>
-                                            <tbody id="tbodyid">
-                                            </tbody>
+                                            <tbody id="tbodyid"></tbody>
                                         </table>
                                     </div>
                                 </td>
                                 <td colspan="4">
-                                    <iframe srcdoc="" id="tbodyid">
-                                    </iframe>
+                                    <img style="width: 150px; height: 150px;"><br><br>
                                 </td>
                             </tr>
                         </table>
@@ -152,10 +150,30 @@
 
                                         @if (Model != null && Model.ListaAquivos.Count > 0)
                                         {
-                                            foreach (var item in Model.ListaAquivos)
+
+                                            for (int i = 0; i < Model.ListaAquivos.Count; i++)
                                             {
+
                                                 <tr>
-                                                    <td>@item</td>
+                                                    <td>
+                                                        <div class="accordion" id="accordionExample">
+                                                            <div class="card">
+                                                                <div class="card-header" id="headingOne">
+                                                                    <h2 class="mb-0">
+                                                                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapse_@i" aria-controls="collapseOne">
+                                                                            @Model.ListaAquivos[i].Nome;
+                                                                        </button>
+                                                                    </h2>
+                                                                </div>
+
+                                                                <div id="collapse_@i" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                                                                    <div class="card-body">
+                                                                        <iframe src="data:application/pdf;base64, @Model.ListaAquivos[i].ImagemArquivo" style=" width: 100%;height: 600px"></iframe>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </td>
                                                 </tr>
                                             }
                                         }
@@ -170,7 +188,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button class="btn btn-primary" type="submit" id="tbnEnviarArquivos">Renomear</button>
+                        <button class="btn btn-primary" type="submit" id="tbnEnviarArquivos">Integrar Arquivos</button>
 
                     </div>
                 </div>
@@ -180,6 +198,7 @@
 
     </div>
 }
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 
 <script type="text/javascript">
 
@@ -187,7 +206,27 @@
         var select = $('#uploadTable');
         for (var i = 0; i < input.files.length; i++) {
             var filename = input.files[i].name;
+
+
             select.append($('<tr id=tr' + i + '><td id=filetd' + i + '>' + filename + '</td></tr>'));
+
+        }
+    }
+
+    function previewImagem() {
+        var imagem = document.querySelector('input[name=imagem]').files[0];
+        var preview = document.querySelector('img');
+
+        var reader = new FileReader();
+
+        reader.onloadend = function () {
+            preview.src = reader.result;
+        }
+
+        if (imagem) {
+            reader.readAsDataURL(imagem);
+        } else {
+            preview.src = "";
         }
     }
 
@@ -215,9 +254,11 @@
                     data: data,
                     success: function (message) {
                         window.location.href = "/Home/Index"
+                        alert("Arquivos indexados com sucesso.")
                     },
                     error: function () {
-                        //code
+                        window.location.href = "/Home/Index"
+                        alert("Erro ao enviar");
                     }
                 });
             }

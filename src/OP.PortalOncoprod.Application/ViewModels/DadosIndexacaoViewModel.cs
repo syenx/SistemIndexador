@@ -1,4 +1,5 @@
 ﻿
+using OP.PortalOncoprod.Application.ViewModels;
 using SistemaIndexador.Application.Interfaces;
 using System;
 using System.Collections.Generic;
@@ -17,7 +18,7 @@ namespace SistemaIndexador.Application.ViewModels
         {
         }
         public HttpPostedFileBase files { get; set; }
-        public List<string> ListaAquivos { get; set; }
+        public List<DadosArquivoViewModel> ListaAquivos { get; set; }
 
         public string matricula { get; set; }
         public string cpf { get; set; }
