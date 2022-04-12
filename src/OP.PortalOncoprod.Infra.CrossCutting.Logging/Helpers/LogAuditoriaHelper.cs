@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Linq.Expressions;
-using System.Web;
-using System.Web.Mvc;
+
 using SistemaIndexador.Infra.CrossCutting.Logging.Data;
 using SistemaIndexador.Infra.CrossCutting.Logging.Model;
 using Microsoft.AspNet.Identity;
+using System.Web.Mvc;
+using System.Web;
 
 namespace SistemaIndexador.Infra.CrossCutting.Logging.Helpers
 {

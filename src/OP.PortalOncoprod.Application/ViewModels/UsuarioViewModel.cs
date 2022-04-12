@@ -9,7 +9,7 @@ namespace SistemaIndexador.Application.ViewModels
     {
         [Key]
         public string usuarioId { get; set; }
-        [HiddenInput]
+
         public string UrlRetorno { get; set; }
       
 
